@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../img/m.jpeg">
+  <link rel="icon" href="../../../../img/m.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Marsh">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="原文链接：https:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2016&#x2F;08&#x2F;migrate-from-http-to-https.html  上一篇文章我介绍了 HTTP&#x2F;2 协议 ，它只有在 HTTPS 环境才会生效。 为了升级到 HTTP&#x2F;2 协议，必须先启用 HTTPS。如果你不了解 HTTPS 协议（学名 TLS 协议），可以参考我以前的文章。   《H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 协议入门-阮一峰">
+<meta property="og:url" content="http://example.com/2022/11/21/HTTPS%20%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97-%E9%98%AE%E4%B8%80%E5%B3%B0/index.html">
+<meta property="og:site_name" content="MARSH">
+<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2016&#x2F;08&#x2F;migrate-from-http-to-https.html  上一篇文章我介绍了 HTTP&#x2F;2 协议 ，它只有在 HTTPS 环境才会生效。 为了升级到 HTTP&#x2F;2 协议，必须先启用 HTTPS。如果你不了解 HTTPS 协议（学名 TLS 协议），可以参考我以前的文章。   《H">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+<meta property="article:published_time" content="2022-11-21T15:09:36.453Z">
+<meta property="article:modified_time" content="2022-11-21T15:09:56.156Z">
+<meta property="article:author" content="Marsh">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="互联网协议">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+  
+  
+  
+  <title>HTTP 协议入门-阮一峰 - MARSH</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../../../css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="../../../../css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="../css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"img/emoji-hover.jpg"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="../../../../js/utils.js" ></script>
+  <script  src="../../../../js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../../../index.html">
+      <strong>MARSH</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../index.html">
+                
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                Categories
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories">
+                    
+                    全部
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90">
+                    
+                    数据分析
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E5%BC%80%E5%8F%91">
+                    
+                    开发
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA">
+                    
+                    计算机
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E5%8D%9A%E5%AE%A2">
+                    
+                    博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E5%85%B6%E4%BB%96">
+                    
+                    其他
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                Tags
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags">
+                    
+                    全部
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/%E5%8E%9F%E5%88%9B">
+                    
+                    原创
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/%E8%BD%AC%E8%BD%BD">
+                    
+                    转载
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/SQL">
+                    
+                    SQL
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Python">
+                    
+                    Python
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Sklearn">
+                    
+                    SKlearn
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Flask">
+                    
+                    Flask
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Golang">
+                    
+                    Golang
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Markdown">
+                    
+                    Markdown
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Hexo">
+                    
+                    Hexo
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../about/">
+                
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTTP 协议入门-阮一峰"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Marsh
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-21 23:09" pubdate>
+          November 21, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HTTP 协议入门-阮一峰</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on November 21, 2022 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html">https://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html</a></p>
+</blockquote>
+<p>上一篇文章我介绍了 <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/08/http.html">HTTP&#x2F;2 协议</a> ，它只有在 HTTPS 环境才会生效。</p>
+<p>为了升级到 HTTP&#x2F;2 协议，必须先启用 HTTPS。如果你不了解 HTTPS 协议（学名 TLS 协议），可以参考我以前的文章。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">《HTTPS 协议概述》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">《图解 HTTPS 协议》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2011/02/seven_myths_about_https.html">《HTTPS 协议的七个误解》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/09/ssl-latency.html">《HTTPS 协议的延迟有多大？》</a></li>
+</ul>
+</blockquote>
+<p>本文介绍如何将一个 HTTP 网站升级到 HTTPS 。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2016/bg2016082601.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="一、获取证书"><a href="#一、获取证书" class="headerlink" title="一、获取证书"></a>一、获取证书</h2><p>升级到 HTTPS 协议的第一步，就是要获得一张证书。</p>
+<p>证书是一个二进制文件，里面包含经过认证的网站公钥和一些元数据，要从经销商购买。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.gogetssl.com/">GoGetSSL</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ssls.com/">SSLs.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://sslmate.com/">SSLmate.com</a></li>
+</ul>
+</blockquote>
+<p>证书有很多类型，首先分为三种认证级别。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2016/bg2016082602.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<ul>
+<li><strong>域名认证</strong>（Domain Validation）：最低级别认证，可以确认申请人拥有这个域名。对于这种证书，浏览器会在地址栏显示一把锁。</li>
+<li><strong>公司认证</strong>（Company Validation）：确认域名所有人是哪一家公司，证书里面会包含公司信息。</li>
+<li><strong>扩展认证</strong>（Extended Validation）：最高级别的认证，浏览器地址栏会显示公司名。</li>
+</ul>
+</blockquote>
+<p>还分为三种覆盖范围。</p>
+<blockquote>
+<ul>
+<li><strong>单域名证书</strong>：只能用于单一域名，<code>foo.com</code>的证书不能用于<code>www.foo.com</code></li>
+<li><strong>通配符证书</strong>：可以用于某个域名及其所有一级子域名，比如<code>*.foo.com</code>的证书可以用于<code>foo.com</code>，也可以用于<code>www.foo.com</code></li>
+<li><strong>多域名证书</strong>：可以用于多个域名，比如<code>foo.com</code>和<code>bar.com</code></li>
+</ul>
+</blockquote>
+<p>认证级别越高、覆盖范围越广的证书，价格越贵。</p>
+<p>还有一个免费证书的选择。为了推广HTTPS协议，电子前哨基金会EFF成立了 <a target="_blank" rel="noopener" href="https://letsencrypt.org/">Let’s Encrypt</a>，提供免费证书（<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tags/let-s-encrypt?type=tutorials">教程</a>和<a target="_blank" rel="noopener" href="https://certbot.eff.org/">工具</a>）。</p>
+<p>拿到证书以后，可以用 <a target="_blank" rel="noopener" href="https://tools.keycdn.com/ssl">SSL Certificate Check</a> 检查一下，信息是否正确。</p>
+<h2 id="二、安装证书"><a href="#二、安装证书" class="headerlink" title="二、安装证书"></a>二、安装证书</h2><p>证书可以放在<code>/etc/ssl</code>目录（Linux 系统），然后根据你使用的Web服务器进行配置。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">证书配置文件生成器</a>，by Mozilla</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SSLMate/tlsconfigguide/tree/master/templates">配置文件模板</a>，by SSLMate</li>
+</ul>
+</blockquote>
+<p>如果使用 Let’s Encrypt 证书，请使用自动安装工具 <a target="_blank" rel="noopener" href="https://certbot.eff.org/">Certbot</a>。</p>
+<p>安装成功后，使用 <a target="_blank" rel="noopener" href="https://www.ssllabs.com/ssltest/analyze.html">SSL Labs Server Test</a> 检查一下证书是否生效。</p>
+<h2 id="三、修改链接"><a href="#三、修改链接" class="headerlink" title="三、修改链接"></a>三、修改链接</h2><p>下一步，网页加载的 HTTP 资源，要全部改成 HTTPS 链接。因为加密网页内如果有非加密的资源，浏览器是不会加载那些资源的。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+&lt;script src&#x3D;&quot;http:&#x2F;&#x2F;foo.com&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div></figure>
+</blockquote>
+<p>上面这行加载命令，有两种改法。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+&lt;!-- 改法一 --&gt;
+&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;foo.com&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;
+
+&lt;!-- 改法二 --&gt;
+&lt;script src&#x3D;&quot;&#x2F;&#x2F;foo.com&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div></figure>
+</blockquote>
+<p>其中，改法二会根据当前网页的协议，加载相同协议的外部资源，更灵活一些。</p>
+<p>另外，如果页面头部用到了<code>rel=&quot;canonical&quot;</code>，也要改成HTTPS网址。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+&lt;link rel&#x3D;&quot;canonical&quot; href&#x3D;&quot;https:&#x2F;&#x2F;foo.com&#x2F;bar.html&quot; &#x2F;&gt;</code></pre></div></figure>
+</blockquote>
+<h2 id="四、301重定向"><a href="#四、301重定向" class="headerlink" title="四、301重定向"></a>四、301重定向</h2><p>下一步，修改 Web 服务器的配置文件，使用 301 重定向，将 HTTP 协议的访问导向 HTTPS 协议。</p>
+<p><a target="_blank" rel="noopener" href="https://serverfault.com/questions/67316/in-nginx-how-can-i-rewrite-all-http-requests-to-https-while-maintaining-sub-dom">Nginx 的写法</a>。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+server &#123;
+  listen 80;
+  server_name domain.com www.domain.com;
+  return 301 https:&#x2F;&#x2F;domain.com$request_uri;
+&#125;</code></pre></div></figure>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://httpd.apache.org/docs/2.4/rewrite/remapping.html#canonicalhost">Apache 的写法</a>（<code>.htaccess</code>文件）。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+RewriteEngine On
+RewriteCond %&#123;HTTPS&#125; off
+RewriteRule (.*) https:&#x2F;&#x2F;%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [R&#x3D;301,L]</code></pre></div></figure>
+</blockquote>
+<h2 id="五、安全措施"><a href="#五、安全措施" class="headerlink" title="五、安全措施"></a>五、安全措施</h2><p>以下措施可以进一步保证通信安全。</p>
+<h3 id="5-1-HTTP-Strict-Transport-Security-HSTS"><a href="#5-1-HTTP-Strict-Transport-Security-HSTS" class="headerlink" title="5.1 HTTP Strict Transport Security (HSTS)"></a>5.1 HTTP Strict Transport Security (HSTS)</h3><p>访问网站时，用户很少直接在地址栏输入<code>https://</code>，总是通过点击链接，或者3xx重定向，从<code>HTTP</code>页面进入<code>HTTPS</code>页面。攻击者完全可以在用户发出<code>HTTP</code>请求时，劫持并篡改该请求。</p>
+<p>另一种情况是恶意网站使用自签名证书，冒充另一个网站，这时浏览器会给出警告，但是许多用户会忽略警告继续访问。</p>
+<p>“HTTP严格传输安全”（简称 HSTS）的作用，就是强制浏览器只能发出<code>HTTPS</code>请求，并阻止用户接受不安全的证书。</p>
+<p>它在网站的响应头里面，加入一个强制性声明。以下例子摘自<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E4%B8%A5%E6%A0%BC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8">维基百科</a>。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+Strict-Transport-Security: max-age&#x3D;31536000; includeSubDomains</code></pre></div></figure>
+</blockquote>
+<p>上面这段头信息有两个作用。</p>
+<blockquote>
+<p>（1）在接下来的一年（即31536000秒）中，浏览器只要向<code>example.com</code>或其子域名发送HTTP请求时，必须采用HTTPS来发起连接。用户点击超链接或在地址栏输入<code>http://www.example.com/</code>，浏览器应当自动将<code>http</code>转写成<code>https</code>，然后直接向<code>https://www.example.com/</code>发送请求。</p>
+<p>（2）在接下来的一年中，如果<code>example.com</code>服务器发送的证书无效，用户不能忽略浏览器警告，将无法继续访问该网站。</p>
+</blockquote>
+<p>HSTS 很大程度上解决了 SSL 剥离攻击。只要浏览器曾经与服务器建立过一次安全连接，之后浏览器会强制使用<code>HTTPS</code>，即使链接被换成了<code>HTTP</code>。</p>
+<p>该方法的主要不足是，用户首次访问网站发出HTTP请求时，是不受HSTS保护的。</p>
+<p>如果想要全面分析网站的安全程度，可以使用 Mozilla 的 <a target="_blank" rel="noopener" href="https://observatory.mozilla.org/">Observatory</a>。</p>
+<h3 id="5-2-Cookie"><a href="#5-2-Cookie" class="headerlink" title="5.2 Cookie"></a>5.2 Cookie</h3><p>另一个需要注意的地方是，确保浏览器只在使用 HTTPS 时，才发送Cookie。</p>
+<p>网站响应头里面，<code>Set-Cookie</code>字段加上<code>Secure</code>标志即可。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+Set-Cookie: LSID&#x3D;DQAAAK...Eaem_vYg; Secure</code></pre></div></figure>
+</blockquote>
+<h2 id="六、参考链接"><a href="#六、参考链接" class="headerlink" title="六、参考链接"></a>六、参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1oRXJUIttqQxuxmjj2tgYjj096IKw4Zcw6eAoIKWZ2oQ/edit#">How To Migrate To HTTPS</a>, by Chris Palmer</li>
+<li><a target="_blank" rel="noopener" href="https://www.keycdn.com/blog/http-to-https/">Complete Guide - How to Migrate from HTTP to HTTPS</a>, by KeyCDN</li>
+<li><a target="_blank" rel="noopener" href="http://smallbiztrends.com/2015/04/changing-from-http-to-https.html">What You Need to Know About Changing From Http to Https</a>, by Matt Mansfield</li>
+</ul>
+<p>（完）</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="../../../../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="../../../../tags/%E8%BD%AC%E8%BD%BD/">#转载</a>
+      
+        <a href="../../../../tags/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE/">#互联网协议</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HTTP 协议入门-阮一峰</div>
+      <div>http://example.com/2022/11/21/HTTPS 升级指南-阮一峰/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Marsh</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 21, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>November 21, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../MVC%EF%BC%8CMVP%20%E5%92%8C%20MVVM%20%E7%9A%84%E5%9B%BE%E7%A4%BA-%E9%98%AE%E4%B8%80%E5%B3%B0/" title="MVC，MVP 和 MVVM 的图示-阮一峰">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MVC，MVP 和 MVVM 的图示-阮一峰</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../HTTP%20%E5%8D%8F%E8%AE%AE%E5%85%A5%E9%97%A8-%E9%98%AE%E4%B8%80%E5%B3%B0/" title="HTTP 协议入门-阮一峰">
+                        <span class="hidden-mobile">HTTP 协议入门-阮一峰</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"JThobepyUWZ8wrCKpWzo5Vju-gzGzoHsz","appKey":"5l7p5rk6oXtEIST5bExEAMrT","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        Views: 
+        <span id="leancloud-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        Visitors: 
+        <span id="leancloud-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../../../js/events.js" ></script>
+<script  src="../../../../js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="../../../../js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="../../../../js/local-search.js" ></script>
+
+  <script defer src="../../../../js/leancloud.js" ></script>
+
+
+
+
+  
+<script src="../js/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="../../../../js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

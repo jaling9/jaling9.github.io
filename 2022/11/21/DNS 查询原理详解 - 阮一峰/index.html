@@ -1,0 +1,950 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../img/m.jpeg">
+  <link rel="icon" href="../../../../img/m.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Marsh">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="原文链接：https:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2022&#x2F;08&#x2F;dns-query.html  通过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。 我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DNS查询原理入门-阮一峰">
+<meta property="og:url" content="http://example.com/2022/11/21/DNS%20%E6%9F%A5%E8%AF%A2%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3%20-%20%E9%98%AE%E4%B8%80%E5%B3%B0/index.html">
+<meta property="og:site_name" content="MARSH">
+<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2022&#x2F;08&#x2F;dns-query.html  通过 DNS 查询，得到域名的 IP 地址，才能访问网站。 那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。  一、DNS 服务器域名对应的 IP 地址，都保存在 DNS 服务器。 我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+<meta property="article:published_time" content="2022-11-21T14:40:23.924Z">
+<meta property="article:modified_time" content="2022-11-21T14:40:54.680Z">
+<meta property="article:author" content="Marsh">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="互联网协议">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+  
+  
+  
+  <title>DNS查询原理入门-阮一峰 - MARSH</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="../../../../css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="../../../../css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="../css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"img/emoji-hover.jpg"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="../../../../js/utils.js" ></script>
+  <script  src="../../../../js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../../../index.html">
+      <strong>MARSH</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../index.html">
+                
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                Categories
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories">
+                    
+                    全部
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90">
+                    
+                    数据分析
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E5%BC%80%E5%8F%91">
+                    
+                    开发
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA">
+                    
+                    计算机
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E5%8D%9A%E5%AE%A2">
+                    
+                    博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../categories/%E5%85%B6%E4%BB%96">
+                    
+                    其他
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                Tags
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags">
+                    
+                    全部
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/%E5%8E%9F%E5%88%9B">
+                    
+                    原创
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/%E8%BD%AC%E8%BD%BD">
+                    
+                    转载
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/SQL">
+                    
+                    SQL
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Python">
+                    
+                    Python
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Sklearn">
+                    
+                    SKlearn
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Flask">
+                    
+                    Flask
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Golang">
+                    
+                    Golang
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Markdown">
+                    
+                    Markdown
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="../../../../tags/Hexo">
+                    
+                    Hexo
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../about/">
+                
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DNS查询原理入门-阮一峰"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Marsh
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-21 22:40" pubdate>
+          November 21, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">DNS查询原理入门-阮一峰</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on November 21, 2022 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2022/08/dns-query.html">https://www.ruanyifeng.com/blog/2022/08/dns-query.html</a></p>
+</blockquote>
+<p>通过 DNS 查询，得到域名的 IP 地址，才能访问网站。</p>
+<p>那么，DNS 查询到底是怎么完成的？本文通过实例，详细介绍背后的步骤。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080102.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="一、DNS-服务器"><a href="#一、DNS-服务器" class="headerlink" title="一、DNS 服务器"></a>一、DNS 服务器</h2><p>域名对应的 IP 地址，都保存在 DNS 服务器。</p>
+<p>我们输入域名，浏览器就会在后台，自动向 DNS 服务器发出请求，获取对应的 IP 地址。这就是 DNS 查询。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080103.webp" srcset="/img/loading.gif" lazyload></p>
+<p>举例来说，我输入 <code>es6.ruanyifeng.com</code> 这个域名，浏览器就要向 DNS 服务器查询，它的 IP 地址是什么，然后向该 IP 发出访问请求。</p>
+<p>网上有很多公用的 DNS 服务器，这篇文章选择 Cloudflare 公司提供的 1.1.1.1 进行演示。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080104.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="二、dig-命令"><a href="#二、dig-命令" class="headerlink" title="二、dig 命令"></a>二、dig 命令</h2><p>命令行工具 dig 可以跟 DNS 服务器互动，我们就用它演示 DNS 查询。如果你还没有安装，可以搜一下安装方法，在 Linux 系统下是非常容易的。</p>
+<p>它的查询语法如下（美元符号<code>$</code>是命令行提示符）。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+$ dig @[DNS 服务器] [域名]</code></pre></div></figure>
+</blockquote>
+<p>向 1.1.1.1 查询域名，就执行下面的命令。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+$ dig @1.1.1.1 es6.ruanyifeng.com</code></pre></div></figure>
+</blockquote>
+<p>正常情况下，它会输出一大堆内容。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080105.webp" srcset="/img/loading.gif" lazyload></p>
+<p>在其中找到 ANSWER SECTION 这个部分，它给出了查询的答案，域名对应的 IP 地址是 104.198.14.52。</p>
+<h2 id="三、域名的树状结构"><a href="#三、域名的树状结构" class="headerlink" title="三、域名的树状结构"></a>三、域名的树状结构</h2><p>你可能会问，难道 DNS 服务器（比如 1.1.1.1）保存了世界上所有域名（包括二级域名、三级域名）的 IP 地址？</p>
+<p>当然不是。DNS 是一个分布式系统，1.1.1.1 只是用户查询入口，它也需要再向其他 DNS 服务器查询，才能获得最终的 IP 地址。</p>
+<p>要说清楚 DNS 完整的查询过程，就必须了解 <strong>域名是一个树状结构</strong>。</p>
+<p>最顶层的域名是根域名（root），然后是顶级域名（top-level domain，简写 TLD），再是一级域名、二级域名、三级域名。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080106.webp" srcset="/img/loading.gif" lazyload></p>
+<p><strong>（1）根域名</strong></p>
+<p>所有域名的起点都是根域名，它写作一个点<code>.</code>，放在域名的结尾。因为这部分对于所有域名都是相同的，所以就省略不写了，比如<code>example.com</code>等同于<code>example.com.</code>（结尾多一个点）。</p>
+<p>你可以试试，任何一个域名结尾加一个点，浏览器都可以正常解读。</p>
+<p><strong>（2）顶级域名</strong></p>
+<p>根域名的下一级是顶级域名。它分成两种：通用顶级域名（gTLD，比如 .com 和 .net）和国别顶级域名（ccTLD，比如 .cn 和 .us）。</p>
+<p>顶级域名由国际域名管理机构 ICANN 控制，它委托商业公司管理 gTLD，委托各国管理自己的国别域名。</p>
+<p><strong>（3）一级域名</strong></p>
+<p>一级域名就是你在某个顶级域名下面，自己注册的域名。比如，<code>ruanyifeng.com</code>就是我在顶级域名<code>.com</code>下面注册的。</p>
+<p><strong>（4）二级域名</strong></p>
+<p>二级域名是一级域名的子域名，是域名拥有者自行设置的，不用得到许可。比如，<code>es6</code> 就是 <code>ruanyifeng.com</code> 的二级域名。</p>
+<h2 id="四、域名的逐级查询"><a href="#四、域名的逐级查询" class="headerlink" title="四、域名的逐级查询"></a>四、域名的逐级查询</h2><p>这种树状结构的意义在于，<strong>只有上级域名，才知道下一级域名的 IP 地址，需要逐级查询。</strong></p>
+<p>每一级域名都有自己的 DNS 服务器，存放下级域名的 IP 地址。</p>
+<p>所以，如果想要查询二级域名 <code>es6.ruanyifeng.com</code> 的 IP 地址，需要三个步骤。</p>
+<blockquote>
+<p>第一步，查询根域名服务器，获得顶级域名服务器<code>.com</code>（又称 TLD 服务器）的 IP 地址。</p>
+<p>第二步，查询 TLD 服务器 <code>.com</code>，获得一级域名服务器 <code>ruanyifeng.com</code> 的 IP 地址。</p>
+<p>第三步，查询一级域名服务器 <code>ruanyifeng.com</code>，获得二级域名 <code>es6</code> 的 IP 地址。</p>
+</blockquote>
+<p>下面依次演示这三个步骤。</p>
+<h2 id="五、根域名服务器"><a href="#五、根域名服务器" class="headerlink" title="五、根域名服务器"></a>五、根域名服务器</h2><p>根域名服务器全世界一共有13台（都是服务器集群）。它们的域名和 IP 地址如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080107.webp" srcset="/img/loading.gif" lazyload></p>
+<p>根域名服务器的 IP 地址是不变的，集成在操作系统里面。</p>
+<p>操作系统会选其中一台，查询 TLD 服务器的 IP 地址。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+$ dig @192.33.4.12 es6.ruanyifeng.com</code></pre></div></figure>
+</blockquote>
+<p>上面示例中，我们选择<code>192.33.4.12</code>，向它发出查询，询问<code>es6.ruanyifeng.com</code>的 TLD 服务器的 IP 地址。</p>
+<p>dig 命令的输出结果如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080108.webp" srcset="/img/loading.gif" lazyload></p>
+<p>因为它给不了 <code>es6.ruanyifeng.com</code> 的 IP 地址，所以输出结果中没有 ANSWER SECTION，只有一个 AUTHORITY SECTION，给出了<code>com.</code>的13台 TLD 服务器的域名。</p>
+<p>下面还有一个 ADDITIONAL SECTION，给出了这13台 TLD 服务器的 IP 地址（包含 IPv4 和 IPv6 两个地址）。</p>
+<h2 id="六、TLD-服务器"><a href="#六、TLD-服务器" class="headerlink" title="六、TLD 服务器"></a>六、TLD 服务器</h2><p>有了 TLD 服务器的 IP 地址以后，我们再选一台接着查询。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+$ dig @192.41.162.30 es6.ruanyifeng.com</code></pre></div></figure>
+</blockquote>
+<p>上面示例中，192.41.162.30 是随便选的一台 .com 的 TLD 服务器，我们向它询问 <code>es6.ruanyifeng.com</code> 的 IP 地址。</p>
+<p>返回结果如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080109.webp" srcset="/img/loading.gif" lazyload></p>
+<p>它依然没有 ANSWER SECTION 的部分，只有 AUTHORITY SECTION，给出了一级域名 ruanyifeng.com 的两台 DNS 服务器。</p>
+<p>下面的 ADDITIONAL SECTION 就是这两台 DNS 服务器对应的 IP 地址。</p>
+<h2 id="七、一级域名的-DNS-服务器"><a href="#七、一级域名的-DNS-服务器" class="headerlink" title="七、一级域名的 DNS 服务器"></a>七、一级域名的 DNS 服务器</h2><p>第三步，再向一级域名的 DNS 服务器查询二级域名的 IP 地址。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+$ dig @172.64.32.123 es6.ruanyifeng.com</code></pre></div></figure>
+</blockquote>
+<p>返回结果如下。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080110.webp" srcset="/img/loading.gif" lazyload></p>
+<p>这次终于有了 ANSWER SECTION，得到了最终的二级域名的 IP 地址。</p>
+<p>至此，三个步骤的 DNS 查询全部完成。</p>
+<h2 id="八、DNS-服务器的种类"><a href="#八、DNS-服务器的种类" class="headerlink" title="八、DNS 服务器的种类"></a>八、DNS 服务器的种类</h2><p>总结一下，上面一共提到了四种服务器。</p>
+<blockquote>
+<ul>
+<li>1.1.1.1</li>
+<li>根域名服务器</li>
+<li>TLD 服务器</li>
+<li>一级域名服务器</li>
+</ul>
+</blockquote>
+<p>它们都属于 DNS 服务器，都用来接受 DNS 查询。但是作用不一样，属于不同的类别。</p>
+<h3 id="8-1-递归-DNS-服务器"><a href="#8-1-递归-DNS-服务器" class="headerlink" title="8.1 递归 DNS 服务器"></a>8.1 递归 DNS 服务器</h3><p>后三种服务器只用来查询下一级域名的 IP 地址，而 1.1.1.1 则把分步骤的查询过程自动化，方便用户一次性得到结果，所以它称为<strong>递归 DNS 服务器</strong>（recursive DNS server），即可以自动递归查询。</p>
+<p>我们平常说的 DNS 服务器，一般都是指递归 DNS 服务器。它把 DNS 查询自动化了，只要向它查询就可以了。</p>
+<p>它内部有缓存，可以保存以前查询的结果，下次再有人查询，就直接返回缓存里面的结果。所以它能加快查询，减轻源头 DNS 服务器的负担。</p>
+<h3 id="8-2-权威-DNS-服务器"><a href="#8-2-权威-DNS-服务器" class="headerlink" title="8.2 权威 DNS 服务器"></a>8.2 权威 DNS 服务器</h3><p>一级域名服务器的正式名称叫做<strong>权威域名服务器</strong>（Authoritative Name Server）。</p>
+<p>“权威”的意思是域名的 IP 地址由它给定，不像递归服务器自己做不了主。我们购买域名后，设置 DNS 服务器就是在设置该域名的权威服务器。</p>
+<h3 id="8-3-四种-DNS-服务器"><a href="#8-3-四种-DNS-服务器" class="headerlink" title="8.3 四种 DNS 服务器"></a>8.3 四种 DNS 服务器</h3><p>综上所述，DNS 服务器可以分成四种：</p>
+<blockquote>
+<ul>
+<li>根域名服务器</li>
+<li>TLD 服务器</li>
+<li>权威域名服务器</li>
+<li>递归域名服务器</li>
+</ul>
+</blockquote>
+<p>它们的关系如下图。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080112.webp" srcset="/img/loading.gif" lazyload></p>
+<p>知道了 DNS 查询的原理，完全可以自己写一个 DNS 的递归服务器，这是不难的。网上有很多参考资料，有兴趣的话，大家可以试试看。</p>
+<p><img src="https://cdn.beekka.com/blogimg/asset/202208/bg2022080111.webp" srcset="/img/loading.gif" lazyload></p>
+<h2 id="九、参考网址"><a href="#九、参考网址" class="headerlink" title="九、参考网址"></a>九、参考网址</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://timothya.com/blog/dns/">Building a Recursive DNS Resolver</a>, Timothy Andrew</li>
+<li><a target="_blank" rel="noopener" href="https://www.dnsfilter.com/blog/authoritative-vs-recursive-dns">Authoritative Vs Recursive DNS: What You Need To Know</a>, Serena Raymond</li>
+<li><a target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/">DNS 服务器类型</a>，Cloudflare</li>
+</ul>
+<p>（完）</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="../../../../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="../../../../tags/%E8%BD%AC%E8%BD%BD/">#转载</a>
+      
+        <a href="../../../../tags/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE/">#互联网协议</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DNS查询原理入门-阮一峰</div>
+      <div>http://example.com/2022/11/21/DNS 查询原理详解 - 阮一峰/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Marsh</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 21, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>November 21, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="../WebSocket%20%E6%95%99%E7%A8%8B-%E9%98%AE%E4%B8%80%E5%B3%B0/" title="WebSocket 教程-阮一峰">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">WebSocket 教程-阮一峰</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../DNS%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8-%E9%98%AE%E4%B8%80%E5%B3%B0/" title="DNS原理入门-阮一峰">
+                        <span class="hidden-mobile">DNS原理入门-阮一峰</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"JThobepyUWZ8wrCKpWzo5Vju-gzGzoHsz","appKey":"5l7p5rk6oXtEIST5bExEAMrT","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        Views: 
+        <span id="leancloud-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        Visitors: 
+        <span id="leancloud-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../../../js/events.js" ></script>
+<script  src="../../../../js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="../../../../js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="../../../../js/local-search.js" ></script>
+
+  <script defer src="../../../../js/leancloud.js" ></script>
+
+
+
+
+  
+<script src="../js/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="../../../../js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
