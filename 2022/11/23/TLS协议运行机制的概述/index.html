@@ -16,24 +16,25 @@
   <meta name="author" content="Marsh">
   <meta name="keywords" content="">
   
-    <meta name="description" content="复杂的软件必须有清晰合理的架构，否则无法开发和维护。 MVC（Model-View-Controller）是最常见的软件架构之一，业界有着广泛应用。它本身很容易理解，但是要讲清楚，它与衍生的 MVP 和 MVVM 架构的区别就不容易了。 昨天晚上，我读了《Scaling Isomorphic Javascript Code》，突然意识到，它们的区别非常简单。我用几段话，就可以说清。  （题图：摄于">
+    <meta name="description" content="原文链接：https:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2014&#x2F;02&#x2F;ssl_tls.html  互联网的通信安全，建立在SSL&#x2F;TLS协议之上。 本文简要介绍SSL&#x2F;TLS协议的运行机制。文章的重点是设计思想和运行过程，不涉及具体的实现细节。如果想了解这方面的内容，请参阅RFC文档。  一、作用 不使用SSL&#x2F;TLS的HTTP通信，就是不加密的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MVC，MVP 和 MVVM 的图示-阮一峰">
-<meta property="og:url" content="http://example.com/2022/11/21/MVC%EF%BC%8CMVP%20%E5%92%8C%20MVVM%20%E7%9A%84%E5%9B%BE%E7%A4%BA-%E9%98%AE%E4%B8%80%E5%B3%B0/index.html">
+<meta property="og:title" content="SSL&#x2F;TLS协议运行机制的概述-阮一峰">
+<meta property="og:url" content="http://example.com/2022/11/23/TLS%E5%8D%8F%E8%AE%AE%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E7%9A%84%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="MARSH">
-<meta property="og:description" content="复杂的软件必须有清晰合理的架构，否则无法开发和维护。 MVC（Model-View-Controller）是最常见的软件架构之一，业界有着广泛应用。它本身很容易理解，但是要讲清楚，它与衍生的 MVP 和 MVVM 架构的区别就不容易了。 昨天晚上，我读了《Scaling Isomorphic Javascript Code》，突然意识到，它们的区别非常简单。我用几段话，就可以说清。  （题图：摄于">
+<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2014&#x2F;02&#x2F;ssl_tls.html  互联网的通信安全，建立在SSL&#x2F;TLS协议之上。 本文简要介绍SSL&#x2F;TLS协议的运行机制。文章的重点是设计思想和运行过程，不涉及具体的实现细节。如果想了解这方面的内容，请参阅RFC文档。  一、作用 不使用SSL&#x2F;TLS的HTTP通信，就是不加密的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images.unsplash.com/photo-1580824026089-8b429c3834f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1734&q=80">
-<meta property="article:published_time" content="2022-11-21T15:16:34.024Z">
-<meta property="article:modified_time" content="2022-11-21T15:21:43.076Z">
+<meta property="og:image" content="https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+<meta property="article:published_time" content="2022-11-22T16:23:30.101Z">
+<meta property="article:modified_time" content="2022-11-22T16:24:46.950Z">
 <meta property="article:author" content="Marsh">
 <meta property="article:tag" content="转载">
+<meta property="article:tag" content="互联网协议">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1580824026089-8b429c3834f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1734&q=80">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
   
   
   
-  <title>MVC，MVP 和 MVVM 的图示-阮一峰 - MARSH</title>
+  <title>SSL/TLS协议运行机制的概述-阮一峰 - MARSH</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -335,13 +336,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1580824026089-8b429c3834f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1734&q=80') no-repeat center center; background-size: cover;">
+     style="background: url('https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MVC，MVP 和 MVVM 的图示-阮一峰"></span>
+            <span id="subtitle" data-typed-text="SSL/TLS协议运行机制的概述-阮一峰"></span>
           
         </div>
 
@@ -357,8 +358,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-11-21 23:16" pubdate>
-          November 21, 2022 pm
+        <time datetime="2022-11-23 00:23" pubdate>
+          November 23, 2022 am
         </time>
       </span>
     
@@ -369,7 +370,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          995 words
+          3.2k words
         
       </span>
     
@@ -380,7 +381,7 @@
         
         
         
-          9 mins
+          27 mins
         
       </span>
     
@@ -436,12 +437,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MVC，MVP 和 MVVM 的图示-阮一峰</h1>
+            <h1 style="display: none">SSL/TLS协议运行机制的概述-阮一峰</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on November 21, 2022 pm
+                    Last updated on November 23, 2022 am
                   
                 
               </p>
@@ -449,47 +450,109 @@
             
               <div class="markdown-body">
                 
-                <p>复杂的软件必须有清晰合理的架构，否则无法开发和维护。</p>
-<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/MVC">MVC</a>（Model-View-Controller）是最常见的软件架构之一，业界有着广泛应用。它本身<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2007/11/mvc.html">很容易理解</a>，但是要讲清楚，它与衍生的 MVP 和 MVVM 架构的区别就不容易了。</p>
-<p>昨天晚上，我读了<a target="_blank" rel="noopener" href="http://blog.nodejitsu.com/scaling-isomorphic-javascript-code/">《Scaling Isomorphic Javascript Code》</a>，突然意识到，它们的区别非常简单。我用几段话，就可以说清。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020102.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>（题图：摄于瓦伦西亚，西班牙，2014年8月）</p>
-<h2 id="一、MVC"><a href="#一、MVC" class="headerlink" title="一、MVC"></a>一、MVC</h2><p>MVC模式的意思是，软件可以分成三个部分。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020104.png" srcset="/img/loading.gif" lazyload></p>
+                <blockquote>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html</a></p>
+</blockquote>
+<p>互联网的通信安全，建立在SSL&#x2F;TLS协议之上。</p>
+<p>本文简要介绍SSL&#x2F;TLS协议的运行机制。文章的重点是设计思想和运行过程，不涉及具体的实现细节。如果想了解这方面的内容，请参阅<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5246">RFC文档</a>。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/201402/bg2014020501.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><strong>一、作用</strong></p>
+<p>不使用SSL&#x2F;TLS的HTTP通信，就是不加密的通信。所有信息明文传播，带来了三大风险。</p>
 <blockquote>
+<p>（1） <strong>窃听风险</strong>（eavesdropping）：第三方可以获知通信内容。</p>
+<p>（2） <strong>篡改风险</strong>（tampering）：第三方可以修改通信内容。</p>
+<p>（3） <strong>冒充风险</strong>（pretending）：第三方可以冒充他人身份参与通信。</p>
+</blockquote>
+<p>SSL&#x2F;TLS协议是为了解决这三大风险而设计的，希望达到：</p>
+<blockquote>
+<p>（1） 所有信息都是<strong>加密传播</strong>，第三方无法窃听。</p>
+<p>（2） 具有<strong>校验机制</strong>，一旦被篡改，通信双方会立刻发现。</p>
+<p>（3） 配备<strong>身份证书</strong>，防止身份被冒充。</p>
+</blockquote>
+<p>互联网是开放环境，通信双方都是未知身份，这为协议的设计带来了很大的难度。而且，协议还必须能够经受所有匪夷所思的攻击，这使得SSL&#x2F;TLS协议变得异常复杂。</p>
+<p><strong>二、历史</strong></p>
+<p>互联网加密通信协议的历史，几乎与互联网一样长。</p>
+<blockquote>
+<p>1994年，NetScape公司设计了SSL协议（Secure Sockets Layer）的1.0版，但是未发布。</p>
+<p>1995年，NetScape公司发布SSL 2.0版，很快发现有严重漏洞。</p>
+<p>1996年，SSL 3.0版问世，得到大规模应用。</p>
+<p>1999年，互联网标准化组织ISOC接替NetScape公司，发布了SSL的升级版<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Secure_Sockets_Layer">TLS</a> 1.0版。</p>
+<p>2006年和2008年，TLS进行了两次升级，分别为TLS 1.1版和TLS 1.2版。最新的变动是2011年TLS 1.2的<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6176">修订版</a>。</p>
+</blockquote>
+<p>目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。</p>
+<p>TLS 1.0通常被标示为SSL 3.1，TLS 1.1为SSL 3.2，TLS 1.2为SSL 3.3。</p>
+<p><strong>三、基本的运行过程</strong></p>
+<p>SSL&#x2F;TLS协议的基本思路是采用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Public-key_cryptography">公钥加密法</a>，也就是说，客户端先向服务器端索要公钥，然后用公钥加密信息，服务器收到密文后，用自己的私钥解密。</p>
+<p>但是，这里有两个问题。</p>
+<p><strong>（1）如何保证公钥不被篡改？</strong></p>
+<blockquote>
+<p>解决方法：将公钥放在<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Digital_certificate">数字证书</a>中。只要证书是可信的，公钥就是可信的。</p>
+</blockquote>
+<p><strong>（2）公钥加密计算量太大，如何减少耗用的时间？</strong></p>
+<blockquote>
+<p>解决方法：每一次对话（session），客户端和服务器端都生成一个”对话密钥”（session key），用它来加密信息。由于”对话密钥”是对称加密，所以运算速度非常快，而服务器公钥只用于加密”对话密钥”本身，这样就减少了加密运算的消耗时间。</p>
+</blockquote>
+<p>因此，SSL&#x2F;TLS协议的基本过程是这样的：</p>
+<blockquote>
+<p>（1） 客户端向服务器端索要并验证公钥。</p>
+<p>（2） 双方协商生成”对话密钥”。</p>
+<p>（3） 双方采用”对话密钥”进行加密通信。</p>
+</blockquote>
+<p>上面过程的前两步，又称为”握手阶段”（handshake）。</p>
+<p><strong>四、握手阶段的详细过程</strong></p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/201402/bg2014020502.png" srcset="/img/loading.gif" lazyload></p>
+<p>“握手阶段”涉及四次通信，我们一个个来看。需要注意的是，”握手阶段”的所有通信都是明文的。</p>
+<p><strong>4.1 客户端发出请求（ClientHello）</strong></p>
+<p>首先，客户端（通常是浏览器）先向服务器发出加密通信的请求，这被叫做ClientHello请求。</p>
+<p>在这一步，客户端主要向服务器提供以下信息。</p>
+<blockquote>
+<p>（1） 支持的协议版本，比如TLS 1.0版。</p>
+<p>（2） 一个客户端生成的随机数，稍后用于生成”对话密钥”。</p>
+<p>（3） 支持的加密方法，比如RSA公钥加密。</p>
+<p>（4） 支持的压缩方法。</p>
+</blockquote>
+<p>这里需要注意的是，客户端发送的信息之中不包括服务器的域名。也就是说，理论上服务器只能包含一个网站，否则会分不清应该向客户端提供哪一个网站的数字证书。这就是为什么通常一台服务器只能有一张数字证书的原因。</p>
+<p>对于虚拟主机的用户来说，这当然很不方便。2006年，TLS协议加入了一个<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc4366">Server Name Indication扩展</a>，允许客户端向服务器提供它所请求的域名。</p>
+<p><strong>4.2 服务器回应（SeverHello）</strong></p>
+<p>服务器收到客户端请求后，向客户端发出回应，这叫做SeverHello。服务器的回应包含以下内容。</p>
+<blockquote>
+<p>（1） 确认使用的加密通信协议版本，比如TLS 1.0版本。如果浏览器与服务器支持的版本不一致，服务器关闭加密通信。</p>
+<p>（2） 一个服务器生成的随机数，稍后用于生成”对话密钥”。</p>
+<p>（3） 确认使用的加密方法，比如RSA公钥加密。</p>
+<p>（4） 服务器证书。</p>
+</blockquote>
+<p>除了上面这些信息，如果服务器需要确认客户端的身份，就会再包含一项请求，要求客户端提供”客户端证书”。比如，金融机构往往只允许认证客户连入自己的网络，就会向正式客户提供USB密钥，里面就包含了一张客户端证书。</p>
+<p><strong>4.3 客户端回应</strong></p>
+<p>客户端收到服务器回应以后，首先验证服务器证书。如果证书不是可信机构颁布、或者证书中的域名与实际域名不一致、或者证书已经过期，就会向访问者显示一个警告，由其选择是否还要继续通信。</p>
+<p>如果证书没有问题，客户端就会从证书中取出服务器的公钥。然后，向服务器发送下面三项信息。</p>
+<blockquote>
+<p>（1） 一个随机数。该随机数用服务器公钥加密，防止被窃听。</p>
+<p>（2） 编码改变通知，表示随后的信息都将用双方商定的加密方法和密钥发送。</p>
+<p>（3） 客户端握手结束通知，表示客户端的握手阶段已经结束。这一项同时也是前面发送的所有内容的hash值，用来供服务器校验。</p>
+</blockquote>
+<p>上面第一项的随机数，是整个握手阶段出现的第三个随机数，又称”pre-master key”。有了它以后，客户端和服务器就同时有了三个随机数，接着双方就用事先商定的加密方法，各自生成本次会话所用的同一把”会话密钥”。</p>
+<p>至于为什么一定要用三个随机数，来生成”会话密钥”，<a target="_blank" rel="noopener" href="http://blog.csdn.net/dog250/article/details/5717162">dog250</a>解释得很好：</p>
+<blockquote>
+<p>“不管是客户端还是服务器，都需要随机数，这样生成的密钥才不会每次都一样。由于SSL协议中证书是静态的，因此十分有必要引入一种随机因素来保证协商出来的密钥的随机性。</p>
+<p>对于RSA密钥交换算法来说，pre-master-key本身就是一个随机数，再加上hello消息中的随机，三个随机数通过一个密钥导出器最终导出一个对称密钥。</p>
+<p>pre master的存在在于SSL协议不信任每个主机都能产生完全随机的随机数，如果随机数不随机，那么pre master secret就有可能被猜出来，那么仅适用pre master secret作为密钥就不合适了，因此必须引入新的随机因素，那么客户端和服务器加上pre master secret三个随机数一同生成的密钥就不容易被猜出了，一个伪随机可能完全不随机，可是是三个伪随机就十分接近随机了，每增加一个自由度，随机性增加的可不是一。”</p>
+</blockquote>
+<p>此外，如果前一步，服务器要求客户端证书，客户端会在这一步发送证书及相关信息。</p>
+<p><strong>4.4 服务器的最后回应</strong></p>
+<p>服务器收到客户端的第三个随机数pre-master key之后，计算生成本次会话所用的”会话密钥”。然后，向客户端最后发送下面信息。</p>
+<blockquote>
+<p>（1）编码改变通知，表示随后的信息都将用双方商定的加密方法和密钥发送。</p>
+<p>（2）服务器握手结束通知，表示服务器的握手阶段已经结束。这一项同时也是前面发送的所有内容的hash值，用来供客户端校验。</p>
+</blockquote>
+<p>至此，整个握手阶段全部结束。接下来，客户端与服务器进入加密通信，就完全是使用普通的HTTP协议，只不过用”会话密钥”加密内容。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/201402/bg2014020503.gif" srcset="/img/loading.gif" lazyload></p>
+<p><strong>五、参考链接</strong></p>
 <ul>
-<li>视图（View）：用户界面。</li>
-<li>控制器（Controller）：业务逻辑</li>
-<li>模型（Model）：数据保存</li>
+<li>MicroSoft TechNet, <a target="_blank" rel="noopener" href="https://technet.microsoft.com/en-us/library/cc785811(v=ws.10).aspx">SSL&#x2F;TLS in Detail</a></li>
+<li>Jeff Moser, <a target="_blank" rel="noopener" href="http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html">The First Few Milliseconds of an HTTPS Connection</a></li>
+<li>Wikipedia, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a></li>
+<li>StackExchange, <a target="_blank" rel="noopener" href="https://security.stackexchange.com/questions/20803/how-does-ssl-work">How does SSL work?</a></li>
 </ul>
-</blockquote>
-<p>各部分之间的通信方式如下。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020105.png" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<ol>
-<li>View 传送指令到 Controller</li>
-<li>Controller 完成业务逻辑后，要求 Model 改变状态</li>
-<li>Model 将新的数据发送到 View，用户得到反馈</li>
-</ol>
-</blockquote>
-<p>所有通信都是单向的。</p>
-<h2 id="二、互动模式"><a href="#二、互动模式" class="headerlink" title="二、互动模式"></a>二、互动模式</h2><p>接受用户指令时，MVC 可以分成两种方式。一种是通过 View 接受指令，传递给 Controller。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020106.png" srcset="/img/loading.gif" lazyload></p>
-<p>另一种是直接通过controller接受指令。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020107.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="三、实例：Backbone"><a href="#三、实例：Backbone" class="headerlink" title="三、实例：Backbone"></a>三、实例：Backbone</h2><p>实际项目往往采用更灵活的方式，以 <a target="_blank" rel="noopener" href="https://documentcloud.github.com/backbone">Backbone.js</a> 为例。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020108.png" srcset="/img/loading.gif" lazyload></p>
-<p>1. 用户可以向 View 发送指令（DOM 事件），再由 View 直接要求 Model 改变状态。</p>
-<p>2. 用户也可以直接向 Controller 发送指令（改变 URL 触发 hashChange 事件），再由 Controller 发送给 View。</p>
-<p>3. Controller 非常薄，只起到路由的作用，而 View 非常厚，业务逻辑都部署在 View。所以，Backbone 索性取消了 Controller，只保留一个 Router（路由器） 。</p>
-<h2 id="四、MVP"><a href="#四、MVP" class="headerlink" title="四、MVP"></a>四、MVP</h2><p>MVP 模式将 Controller 改名为 Presenter，同时改变了通信方向。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020109.png" srcset="/img/loading.gif" lazyload></p>
-<p>1. 各部分之间的通信，都是双向的。</p>
-<p>2. View 与 Model 不发生联系，都通过 Presenter 传递。</p>
-<p>3. View 非常薄，不部署任何业务逻辑，称为”被动视图”（Passive View），即没有任何主动性，而 Presenter非常厚，所有逻辑都部署在那里。</p>
-<h2 id="五、MVVM"><a href="#五、MVVM" class="headerlink" title="五、MVVM"></a>五、MVVM</h2><p>MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一致。</p>
-<p><img src="https://www.ruanyifeng.com/blogimg/asset/2015/bg2015020110.png" srcset="/img/loading.gif" lazyload></p>
-<p>唯一的区别是，它采用双向绑定（data-binding）：View的变动，自动反映在 ViewModel，反之亦然。<a target="_blank" rel="noopener" href="https://angularjs.org/">Angular</a> 和 <a target="_blank" rel="noopener" href="http://emberjs.com/">Ember</a> 都采用这种模式。</p>
 <p>（完）</p>
 
                 
@@ -509,7 +572,7 @@
     
       <span class="category-chain">
         
-  <a href="../../../../categories/%E5%BC%80%E5%8F%91/" class="category-chain-item">开发</a>
+  <a href="../../../../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
   
   
 
@@ -526,6 +589,8 @@
       
         <a href="../../../../tags/%E8%BD%AC%E8%BD%BD/">#转载</a>
       
+        <a href="../../../../tags/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE/">#互联网协议</a>
+      
     </div>
   
 </div>
@@ -536,8 +601,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MVC，MVP 和 MVVM 的图示-阮一峰</div>
-      <div>http://example.com/2022/11/21/MVC，MVP 和 MVVM 的图示-阮一峰/</div>
+      <div>SSL/TLS协议运行机制的概述-阮一峰</div>
+      <div>http://example.com/2022/11/23/TLS协议运行机制的概述/</div>
     </div>
     <div class="license-meta">
       
@@ -549,13 +614,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 21, 2022</div>
+          <div>November 23, 2022</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>November 21, 2022</div>
+          <div>November 23, 2022</div>
         </div>
       
       
@@ -586,18 +651,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../../23/TLS%E5%8D%8F%E8%AE%AE%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E7%9A%84%E6%A6%82%E8%BF%B0/" title="SSL/TLS协议运行机制的概述-阮一峰">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SSL/TLS协议运行机制的概述-阮一峰</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="../HTTPS%20%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97-%E9%98%AE%E4%B8%80%E5%B3%B0/" title="HTTP/2 协议入门-阮一峰">
-                        <span class="hidden-mobile">HTTP/2 协议入门-阮一峰</span>
+                      <a href="../../21/MVC%EF%BC%8CMVP%20%E5%92%8C%20MVVM%20%E7%9A%84%E5%9B%BE%E7%A4%BA-%E9%98%AE%E4%B8%80%E5%B3%B0/" title="MVC，MVP 和 MVVM 的图示-阮一峰">
+                        <span class="hidden-mobile">MVC，MVP 和 MVVM 的图示-阮一峰</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
