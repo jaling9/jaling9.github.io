@@ -16,25 +16,23 @@
   <meta name="author" content="Marsh">
   <meta name="keywords" content="">
   
-    <meta name="description" content="列表是有序的可变容器 元组是有序的不可变容器 字典是无序的可变容器–&gt;字典也被称作关联数组或者哈希表 集合是无序且不可变类型容器     元字符 说明    [\b] 回退（删除）一个字符   \f 换页符   \n 换行符   \r 回车符   \t 制表符   \v 垂直制表符   字符串方法 find–&gt;返回某个字符串位置 replace–&gt;替换某个字符串 strip–&amp;">
+    <meta name="description" content="flask返回模板文件时，抛出下列这个错误： BuildError werkzeug.routing.exceptions.BuildError: Could not build url for endpoint &#39; welcome &#39;. Did you mean &#39;welcome&#39; instead? traceback显示： return render_templ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python基础知识">
-<meta property="og:url" content="http://example.com/2022/11/15/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:title" content="flask 报错BuildError">
+<meta property="og:url" content="http://example.com/2022/11/25/flask%E6%8A%A5werkzeug.routing.exceptions.BuildError%E9%94%99%E8%AF%AF/index.html">
 <meta property="og:site_name" content="MARSH">
-<meta property="og:description" content="列表是有序的可变容器 元组是有序的不可变容器 字典是无序的可变容器–&gt;字典也被称作关联数组或者哈希表 集合是无序且不可变类型容器     元字符 说明    [\b] 回退（删除）一个字符   \f 换页符   \n 换行符   \r 回车符   \t 制表符   \v 垂直制表符   字符串方法 find–&gt;返回某个字符串位置 replace–&gt;替换某个字符串 strip–&amp;">
+<meta property="og:description" content="flask返回模板文件时，抛出下列这个错误： BuildError werkzeug.routing.exceptions.BuildError: Could not build url for endpoint &#39; welcome &#39;. Did you mean &#39;welcome&#39; instead? traceback显示： return render_templ">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images.unsplash.com/photo-1526488807855-309186804587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80">
-<meta property="article:published_time" content="2022-11-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-15T12:10:16.827Z">
+<meta property="article:published_time" content="2022-11-25T15:22:44.899Z">
+<meta property="article:modified_time" content="2022-11-25T15:24:17.003Z">
 <meta property="article:author" content="Marsh">
 <meta property="article:tag" content="原创">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="flask">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1526488807855-309186804587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80">
   
   
   
-  <title>Python基础知识 - MARSH</title>
+  <title>flask 报错BuildError - MARSH</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -332,13 +330,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://images.unsplash.com/photo-1526488807855-309186804587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80') no-repeat center center; background-size: cover;">
+     style="background: url('../../../../img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Python基础知识"></span>
+            <span id="subtitle" data-typed-text="flask 报错BuildError"></span>
           
         </div>
 
@@ -354,8 +352,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-11-15 00:00" pubdate>
-          November 15, 2022 am
+        <time datetime="2022-11-25 23:22" pubdate>
+          November 25, 2022 pm
         </time>
       </span>
     
@@ -366,7 +364,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k words
+          726 words
         
       </span>
     
@@ -377,7 +375,7 @@
         
         
         
-          19 mins
+          7 mins
         
       </span>
     
@@ -433,12 +431,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Python基础知识</h1>
+            <h1 style="display: none">flask 报错BuildError</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on November 15, 2022 pm
+                    Last updated on November 25, 2022 pm
                   
                 
               </p>
@@ -446,181 +444,15 @@
             
               <div class="markdown-body">
                 
-                <ul>
-<li>列表是有序的可变容器</li>
-<li>元组是有序的不可变容器</li>
-<li>字典是无序的可变容器–&gt;字典也被称作关联数组或者哈希表</li>
-<li>集合是无序且不可变类型容器</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元字符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[\b]</td>
-<td>回退（删除）一个字符</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>换页符</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>换行符</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>回车符</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>制表符</td>
-</tr>
-<tr>
-<td>\v</td>
-<td>垂直制表符</td>
-</tr>
-</tbody></table>
-<h2 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a>字符串方法</h2><ul>
-<li>find–&gt;返回某个字符串位置</li>
-<li>replace–&gt;替换某个字符串</li>
-<li>strip–&gt;去除某个字符串</li>
-<li>split–&gt;以某个字符串前后拆分，不保留分隔符号，返回列表</li>
-<li>partition –&gt;以某个字符串前后拆分，保留分隔符号，返回元组</li>
-<li>index–&gt;返回某个字符串的索引</li>
-<li>upper&amp;lower–&gt;转换大小写</li>
-<li>join –&gt;用于在指定字符串中间穿插其他字符串</li>
-<li>format–&gt;格式化输出</li>
-</ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><ul>
-<li>append–&gt;一次加一个</li>
-<li>extend–&gt;一次加多个</li>
-<li>insert–&gt;指定索引位置插入</li>
-<li>pop –&gt;指定索引位置删除</li>
-<li>remove–&gt;移除指定元素</li>
-<li>del–&gt;删除整个对象</li>
-<li>clear–&gt;清空整个列表</li>
-<li>index–&gt;返回列表元素的索引</li>
-<li>count–&gt;统计列表元素出现次数</li>
-<li>in–&gt;</li>
-<li>sort–&gt;排序，可选reverse&#x3D;True反转</li>
-<li>reverse–&gt;反转列表</li>
-</ul>
-<h2 id="元组方法"><a href="#元组方法" class="headerlink" title="元组方法"></a>元组方法</h2><ul>
-<li>count</li>
-<li>index</li>
-<li>in</li>
-</ul>
-<h2 id="字典方法"><a href="#字典方法" class="headerlink" title="字典方法"></a>字典方法</h2><ul>
-<li>keys()&#x2F;Values()–&gt;返回键&#x2F;值对象，需要使用list和tuple转换</li>
-<li>items–&gt;返回键值元组</li>
-<li>update–&gt;有顺序更新，有方向更新，替换重复值</li>
-<li>setdefault–&gt;选择性更新，原位置已有值返回原值，无值返回新值d.setdefault(‘A’, 5)</li>
-</ul>
-<h2 id="集合方法"><a href="#集合方法" class="headerlink" title="集合方法"></a>集合方法</h2><ul>
-<li>add –&gt;添加一个元素</li>
-<li>remove–&gt;移除一个元素</li>
-<li>pop–&gt;随机删除一个元素</li>
-<li>交集运算符–&gt;&amp;    intersectionintersection_update</li>
-<li>并集运算符–&gt;|    union  update</li>
-<li>差集运算符–&gt;-    differencedifference_update</li>
-<li>补集运算符–&gt;^    symmetric_differencesymmetric_difference_update</li>
-<li>集合关系判断 –&gt;     issubset issupersetisdisjoint</li>
-<li>冻集合——不可变集合类型</li>
-</ul>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>定义函数</p>
-<figure><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">sum_1</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">"""让输入的两个对象利用加号运算符进行相加
-    参数：\n
-    a：函数输入的第一个对象\n
-    b：函数输入的第二个对象\n
-    return，返回a+b的结果
-    """</span>
-    c <span class="token operator">=</span> a <span class="token operator">+</span> b               
-    <span class="token keyword">return</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>   </code></pre></div></figure>
-
-<h2 id="形参和全局变量"><a href="#形参和全局变量" class="headerlink" title="形参和全局变量"></a>形参和全局变量</h2><figure><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"> <span class="token comment"># 定义时小括号中的参数，用来接收参数用的，称为 “形参”（形式参数），</span>
-    <span class="token comment"># 而调用时小括号中的参数，用来传递给函数用的，称为 “实参”（实际参数） </span>
-<span class="token keyword">def</span> <span class="token function">sum_1</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>            
-    c <span class="token operator">=</span> a <span class="token operator">+</span> b                
-    <span class="token keyword">return</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>  
-    
-<span class="token keyword">def</span> <span class="token function">sum_2</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">global</span> a <span class="token comment"># 声明全局变量</span>
-    a <span class="token operator">+=</span> b
-    <span class="token keyword">return</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>    </code></pre></div></figure>
-
-<h2 id="可变长参数"><a href="#可变长参数" class="headerlink" title="可变长参数"></a>可变长参数</h2><figure><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">sum_2</span><span class="token punctuation">(</span><span class="token operator">*</span>num<span class="token punctuation">)</span><span class="token punctuation">:</span>               <span class="token comment"># 此时*num就是一个可变长参数</span>
-    r <span class="token operator">=</span> <span class="token number">0</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> num<span class="token punctuation">:</span>              <span class="token comment"># 但可变长参数名仍然是num而非*num</span>
-        r <span class="token operator">+=</span> i
-    <span class="token keyword">return</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span></code></pre></div></figure>
-
-<h2 id="类Class"><a href="#类Class" class="headerlink" title="类Class"></a>类Class</h2><h3 id="定义静态属性"><a href="#定义静态属性" class="headerlink" title="定义静态属性"></a>定义静态属性</h3><figure><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Human</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">'''人类'''</span>
-    mam <span class="token operator">=</span> <span class="token boolean">True</span>     
-定义动态属性
-<span class="token triple-quoted-string string">"""
-__init__函数解释：      
-是一种特殊函数，也称为是构造函数，多用于带参数属性的类的创建过程；
-self是一个特殊的参数，相当于类本身的一种表示，相当于是C中的指针“this”，
-是init函数必须设置的第一个参数；
-
-类中定义的函数也需要传入self参数；
-这些函数可以通过外部调用方法的方式进行调用。
-"""</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Human</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">'''人类'''</span>
-    mam <span class="token operator">=</span> <span class="token boolean">True</span> 
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> age <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> gender <span class="token operator">=</span> <span class="token string">'Unknow'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>age <span class="token operator">=</span> age
-        self<span class="token punctuation">.</span>gender <span class="token operator">=</span> gender
-        
-zs <span class="token operator">=</span> Human<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">)</span>       <span class="token comment"># 重新设置属性</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Human1</span><span class="token punctuation">:</span>
-    <span class="token triple-quoted-string string">'''人类'''</span>
-    mam <span class="token operator">=</span> <span class="token boolean">True</span>
-    <span class="token decorator annotation punctuation">@property</span>             <span class="token comment">#属性私有化，防止被修改</span>
-    <span class="token keyword">def</span> <span class="token function">mam</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token boolean">True</span>
-<span class="token triple-quoted-string string">"""
-property，则可将方法转化为属性。
-因此，上述类的创建，相当于创建了一个属性mam和一个同名方法mam，并且将同名方法转化为了属性
-"""</span></code></pre></div></figure>
-
-<h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><figure><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Point</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>               
-        self<span class="token punctuation">.</span>x <span class="token operator">=</span> x
-        self<span class="token punctuation">.</span>y <span class="token operator">=</span> y
-    <span class="token keyword">def</span> <span class="token function">dis</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x <span class="token operator">-</span> p<span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>y <span class="token operator">-</span> p<span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token number">0.5</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Point1</span><span class="token punctuation">(</span>Point<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token comment"># 继承自Point类</span>
-    <span class="token keyword">def</span> <span class="token function">dis</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>x <span class="token operator">-</span> p<span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>y <span class="token operator">-</span> p<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre></div></figure>
-
-<h2 id="二维到多维"><a href="#二维到多维" class="headerlink" title="二维到多维"></a>二维到多维</h2><figure><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Point2</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 定义一个可变长数组，并将其转化为列表对象</span>
-        self<span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Point2</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">)</span><span class="token punctuation">:</span>               
-        self<span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span>
-    <span class="token keyword">def</span> <span class="token function">dis</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        t <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            t<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>l<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> p<span class="token punctuation">.</span>l<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> <span class="token builtin">sum</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token number">0.5</span></code></pre></div></figure>
-
-<h2 id="函数和方法的区别"><a href="#函数和方法的区别" class="headerlink" title="函数和方法的区别"></a>函数和方法的区别</h2><blockquote>
-<p>函数和方法的区别：方法是定义在类里面的函数！</p>
-</blockquote>
-
+                <p>flask返回模板文件时，抛出下列这个错误：</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">BuildError
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint &#39; welcome &#39;. Did you mean &#39;welcome&#39; instead?</code></pre></div></figure>
+<p>traceback显示：</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">return render_template(&#39;main.html&#39;,username&#x3D;current_user.username)</code></pre></div></figure>
+<p>网上搜了很多方法都不能解决，最后发现是main.html模板文件内的src写法有问题。<code>src=&#39;&#123;&#123; url_for('welcome')&#125;&#125;&#39; </code>如果是两层单引号，保存文件时，eslint插件会自动在welcome前后添加空格，导致错误。</p>
+<figure><div class="code-wrapper"><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>right<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>el-main<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>&#123;&#123; url_for(<span class="token punctuation">'</span></span><span class="token attr-name">welcome')&#125;&#125;'</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre></div></figure>
+<p>外面改成双引号<code>src=&quot;&#123;&#123; url_for('welcome')&#125;&#125;&quot; </code>即可解决。ESLINT插件就不会自动添加空格。</p>
+<figure><div class="code-wrapper"><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>right<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>el-main<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; url_for('welcome')&#125;&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre></div></figure>
                 
               </div>
             
@@ -638,7 +470,7 @@ property，则可将方法转化为属性。
     
       <span class="category-chain">
         
-  <a href="../../../../categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="category-chain-item">数据分析</a>
+  <a href="../../../../categories/%E5%BC%80%E5%8F%91/" class="category-chain-item">开发</a>
   
   
 
@@ -655,7 +487,7 @@ property，则可将方法转化为属性。
       
         <a href="../../../../tags/%E5%8E%9F%E5%88%9B/">#原创</a>
       
-        <a href="../../../../tags/Python/">#Python</a>
+        <a href="../../../../tags/flask/">#flask</a>
       
     </div>
   
@@ -667,8 +499,8 @@ property，则可将方法转化为属性。
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Python基础知识</div>
-      <div>http://example.com/2022/11/15/Python基础知识/</div>
+      <div>flask 报错BuildError</div>
+      <div>http://example.com/2022/11/25/flask报werkzeug.routing.exceptions.BuildError错误/</div>
     </div>
     <div class="license-meta">
       
@@ -680,13 +512,13 @@ property，则可将方法转化为属性。
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 15, 2022</div>
+          <div>November 25, 2022</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>November 15, 2022</div>
+          <div>November 25, 2022</div>
         </div>
       
       
@@ -717,18 +549,12 @@ property，则可将方法转化为属性。
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../NumPy%E7%94%9F%E6%88%90%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84/" title="NumPy生成自定义数组">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">NumPy生成自定义数组</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="../../14/%E5%A6%82%E4%BD%95%E5%9C%A8Markdown%E9%87%8C%E4%BD%BF%E7%94%A8Echarts%E5%9B%BE%E8%A1%A8%EF%BC%9F/" title="如何在Markdown里使用Echarts图表？">
-                        <span class="hidden-mobile">如何在Markdown里使用Echarts图表？</span>
+                      <a href="../../23/TLS%E5%8D%8F%E8%AE%AE%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E7%9A%84%E6%A6%82%E8%BF%B0/" title="SSL/TLS协议运行机制的概述-阮一峰">
+                        <span class="hidden-mobile">SSL/TLS协议运行机制的概述-阮一峰</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
