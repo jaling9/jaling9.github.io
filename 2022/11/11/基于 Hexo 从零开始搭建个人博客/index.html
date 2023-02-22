@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Marsh的博客">
+    <meta name="author" content="小满">
+    
+    <title>
+        
+            基于 Hexo 从零开始搭建个人博客 |
+        
+        小满的博客
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="../../../../images/logo.jepg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#c0392b","logo":"/images/logo.jepg","favicon":"/images/logo.jepg","avatar":"/images/avatar.jepg","font_size":"18px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"gitalk","valine":{"appId":"JThobepyUWZ8wrCKpWzo5Vju-gzGzoHsz","appKey":"5l7p5rk6oXtEIST5bExEAMrT","server_urls":null,"placeholder":"留下点足迹~# Input box placeholder"},"gitalk":{"github_id":"jaling9","github_admins":"jaling9","repository":"hexo-site-coments","client_id":"ab165842dc9a64de37e9# GitHub Application Client ID","client_secret":"96d2589a9e0310efa2bf996a5f5e88ef8b7b3557#","proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["摸不到门","半只脚入门","入门"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="../../../../images/logo.jepg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               小满的博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">基于 Hexo 从零开始搭建个人博客</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="../../../../images/avatar.jepg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">小满</span>
+                            
+                                <span class="author-label">Lv3</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-11-11 22:49:20</span>
+        <span class="mobile">2022-11-11 22:49</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-02-22 19:01:46</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../../../../categories/%E5%8D%9A%E5%AE%A2/">博客</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../../../../tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../../../../tags/hexo/">hexo</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <hr>
+<blockquote>
+<p>阅读本篇前，请先阅读前几篇文章：<br><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1601/">基于 Hexo 从零开始搭建个人博客（一）</a><br><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1602/">基于 Hexo 从零开始搭建个人博客（二）</a><br><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1603/">基于 Hexo 从零开始搭建个人博客（三）</a></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%89%8D%E8%A8%80" title="前言"></a>前言</h2><ol>
+<li>博客搭建过程遇到任何问题，优先在本页面搜索，检查是否已经有该配置教程。</li>
+<li>遇到问题可以优先在文章评论区留言，注意留言时请填写正确的邮箱以确保能收到站长的回复。</li>
+<li>实在解决不了的问题可添加博主 Wechat ，添加好友时请备注自己的姓名+专业，如 张三 计算机科学与技术。</li>
+</ol>
+<h2 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#Front-matter" title="Front-matter"></a>Front-matter</h2><p><strong>Front-matter</strong> 是 <strong>markdown</strong> 文件最上方以<code>---</code>分隔的区域，用于指定个别档案的变数。</p>
+<ul>
+<li>Page Front-matter 用于页面配置</li>
+<li>Post Front-matter 用于文章页配置</li>
+</ul>
+<p>如果标注可选的参数，可根据自己需要添加，不用全部都写在 markdown 里</p>
+<h3 id="Page-Front-matter"><a href="#Page-Front-matter" class="headerlink" title="Page Front-matter"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#Page-Front-matter" title="Page Front-matter"></a>Page Front-matter</h3><figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title:date:updated:type:comments:description:keywords:top_img:mathjax:katex:aside:aplayer:highlight_shrink:---</code></pre></div></figure>
+
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>【必需】页面标题</td>
+</tr>
+<tr>
+<td>date</td>
+<td>【必需】页面创建日期</td>
+</tr>
+<tr>
+<td>type</td>
+<td>【必需】标籤、分类和友情链接三个页面需要配置</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>【可选】页面更新日期</td>
+</tr>
+<tr>
+<td>description</td>
+<td>【可选】页面描述</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>【可选】页面关键字</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>【可选】显示页面评论模块(默认 true)</td>
+</tr>
+<tr>
+<td>top_img</td>
+<td>【可选】页面顶部图片</td>
+</tr>
+<tr>
+<td>mathjax</td>
+<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>katex</td>
+<td>【可选】显示 katex(当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>【可选】显示侧边栏 (默认 true)</td>
+</tr>
+<tr>
+<td>aplayer</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的音乐 配置</td>
+</tr>
+<tr>
+<td>highlight_shrink</td>
+<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
+</tr>
+</tbody></table>
+<h3 id="Post-Front-matter"><a href="#Post-Front-matter" class="headerlink" title="Post Front-matter"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#Post-Front-matter" title="Post Front-matter"></a>Post Front-matter</h3><figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title:date:updated:tags:categories:keywords:description:top_img:comments:cover:toc:toc_number:toc_style_simple:copyright:copyright_author:copyright_author_href:copyright_url:copyright_info:mathjax:katex:aplayer:highlight_shrink:aside:---</code></pre></div></figure>
+
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>【必需】文章标题</td>
+</tr>
+<tr>
+<td>date</td>
+<td>【必需】文章创建日期</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>【可选】文章更新日期</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>【可选】文章标籤</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>【可选】文章分类</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>【可选】文章关键字</td>
+</tr>
+<tr>
+<td>description</td>
+<td>【可选】文章描述</td>
+</tr>
+<tr>
+<td>top_img</td>
+<td>【可选】文章顶部图片</td>
+</tr>
+<tr>
+<td>cover</td>
+<td>【可选】文章缩略图(如果没有设置 top_img,文章页顶部将显示缩略图，可设为 false&#x2F;图片地址&#x2F;留空)</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>【可选】显示文章评论模块(默认 true)</td>
+</tr>
+<tr>
+<td>toc</td>
+<td>【可选】显示文章 TOC(默认为设置中 toc 的 enable 配置)</td>
+</tr>
+<tr>
+<td>toc_number</td>
+<td>【可选】显示 toc_number(默认为设置中 toc 的 number 配置)</td>
+</tr>
+<tr>
+<td>toc_style_simple</td>
+<td>【可选】显示 toc 简洁模式</td>
+</tr>
+<tr>
+<td>copyright</td>
+<td>【可选】显示文章版权模块(默认为设置中 post_copyright 的 enable 配置)</td>
+</tr>
+<tr>
+<td>copyright_author</td>
+<td>【可选】文章版权模块的文章作者</td>
+</tr>
+<tr>
+<td>copyright_author_href</td>
+<td>【可选】文章版权模块的文章作者链接</td>
+</tr>
+<tr>
+<td>copyright_url</td>
+<td>【可选】文章版权模块的文章连结链接</td>
+</tr>
+<tr>
+<td>copyright_info</td>
+<td>【可选】文章版权模块的版权声明文字</td>
+</tr>
+<tr>
+<td>mathjax</td>
+<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>katex</td>
+<td>【可选】显示 katex(当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
+</tr>
+<tr>
+<td>aplayer</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的音乐 配置</td>
+</tr>
+<tr>
+<td>highlight_shrink</td>
+<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>【可选】显示侧边栏 (默认 true)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：我的博客根目录路径为 【G:&#x2F;hexo-blog&#x2F;blog-demo】，下文所说的根目录都是此路径，将用<code>[BlogRoot]</code>代替。如果不清楚根目录路径，请回到教程 <a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1602/">基于 Hexo 从零开始搭建个人博客（二）</a>，查看你执行<code>hexo init xxx</code>这条命令时所选择的路径，例如我选择的路径是【G:&#x2F;hexo-blog】，我的博客根目录即为【G:&#x2F;hexo-blog&#x2F;xxx】。</p>
+</blockquote>
+<h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E6%A0%87%E7%AD%BE%E9%A1%B5" title="标签页"></a>标签页</h2><ol>
+<li><p>前往你的 Hexo 博客根目录，打开 cmd 命令窗口执行<code>hexo new page tags</code>。</p>
+</li>
+<li><p>在【BlogRoot&#x2F;source&#x2F;】会生成一个含有<code>index.md</code>文件的<code>tags</code>文件夹。</p>
+<p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/62937c8344bbb.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif"></a></p>
+</li>
+<li><p>修改【BlogRoot&#x2F;source&#x2F;tags&#x2F;index.md】，添加<code>type: &quot;tags&quot;</code>。</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title: tagsdate: 2022-05-29 21:42:56type: &quot;tags&quot;---</code></pre></div></figure></li>
+</ol>
+<h2 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%88%86%E7%B1%BB%E9%A1%B5" title="分类页"></a>分类页</h2><ol>
+<li><p>前往你的 Hexo 博客根目录，打开 cmd 命令窗口执行<code>hexo new page categories</code>。</p>
+</li>
+<li><p>在【BlogRoot&#x2F;source&#x2F;】会生成一个含有<code>index.md</code>文件的<code>categories</code>文件夹。</p>
+<p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/62937c8627deb.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif"></a></p>
+</li>
+<li><p>修改【BlogRoot&#x2F;source&#x2F;categories&#x2F;index.md】，添加<code>type: &quot;categories&quot;</code>。</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title: categoriesdate: 2022-05-29 21:57:07type: &quot;categories&quot;---</code></pre></div></figure></li>
+</ol>
+<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5" title="友情链接"></a>友情链接</h2><h3 id="创建友情链接页面"><a href="#创建友情链接页面" class="headerlink" title="创建友情链接页面"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%88%9B%E5%BB%BA%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2" title="创建友情链接页面"></a>创建友情链接页面</h3><ol>
+<li><p>前往你的 Hexo 博客根目录，打开 cmd 命令窗口执行<code>hexo new page link</code>。</p>
+</li>
+<li><p>在【BlogRoot&#x2F;source&#x2F;】会生成一个含有<code>index.md</code>文件的<code>link</code>文件夹。</p>
+<p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/629385dc3918c.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif"></a></p>
+</li>
+<li><p>修改【BlogRoot&#x2F;source&#x2F;link&#x2F;index.md】，添加<code>type: &quot;link&quot;</code>。</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title: linkdate: 2022-05-29 22:03:35type: &quot;link&quot;---</code></pre></div></figure></li>
+</ol>
+<h3 id="友情链接页面添加友链信息"><a href="#友情链接页面添加友链信息" class="headerlink" title="友情链接页面添加友链信息"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E4%BF%A1%E6%81%AF" title="友情链接页面添加友链信息"></a>友情链接页面添加友链信息</h3><p>前往 Hexo 博客目录（【BlogRoot&#x2F;source&#x2F;_data】）创建一个文件<code>link.yml</code>（如果沒有 _data 文件夹，请自行创建）。</p>
+<p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/629385e182b48.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif"></a></p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">- class_name: 友情链接  class_desc: 那些人，那些事  link_list:    - name: 唐志远の博客      link: https:&#x2F;&#x2F;tzy1997.com&#x2F;      avatar: https:&#x2F;&#x2F;bu.dusays.com&#x2F;2022&#x2F;01&#x2F;14&#x2F;cd5ffd485f867.jpg      descr: 古今之成大事者，不惟有超世之才，亦必有坚忍不拔之志。- class_name: 网站  class_desc: 值得推荐的网站  link_list:    - name: Twitter      link: https:&#x2F;&#x2F;twitter.com&#x2F;      avatar: https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;14&#x2F;5VyHPQqR6LWF39a.png      descr: 社交分享平台</code></pre></div></figure>
+
+<p><code>class_name</code>和<code>class_desc</code>支持 html 格式，如不需要，也可以留空。</p>
+<p>如果你想设置成本站友链页的效果，请参考教程：<a target="_blank" rel="noopener" href="https://tzy1997.com/articles/0xiipgum/">基于 Butterfly 的外挂标签引入</a> 。</p>
+<h2 id="图库"><a href="#图库" class="headerlink" title="图库"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%9B%BE%E5%BA%93" title="图库"></a>图库</h2><p>图库页面只是普通的页面，你只需要<code>hexo new page xxxxx</code>创建你的页面就行。</p>
+<p>然后使用标签外挂 <a target="_blank" rel="noopener" href="https://butterfly.js.org/posts/4aa8abbe/#Gallery%E7%9B%B8%E5%86%8A%E5%9C%96%E5%BA%AB">galleryGroup</a>，具体用法请查看对应的内容。</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">&lt;div class&#x3D;&quot;gallery-group-main&quot;&gt;&#123;% galleryGroup &#39;壁纸&#39; &#39;收藏的一些壁纸&#39; &#39;&#x2F;Gallery&#x2F;wallpaper&#39; https:&#x2F;&#x2F;bu.dusays.com&#x2F;2021&#x2F;03&#x2F;06&#x2F;38a2c5cd8b44e.jpg %&#125;&#123;% galleryGroup &#39;漫威&#39; &#39;关于漫威的图片&#39; &#39;&#x2F;Gallery&#x2F;marvel&#39; https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;8t97aVlp4hgyBGu.jpg %&#125;&#123;% galleryGroup &#39;OH MY GIRL&#39; &#39;关于OH MY GIRL的图片&#39; &#39;&#x2F;Gallery&#x2F;ohmygirl&#39; https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;hOqbQ3BIwa6KWpo.jpg %&#125;&lt;&#x2F;div&gt;</code></pre></div></figure>
+
+<p><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" alt="Group Image Gallery"></p>
+<p>壁纸</p>
+<p>收藏的一些壁纸</p>
+<p><a target="_blank" rel="noopener" href="https://tzy1997.com/Gallery/wallpaper"></a></p>
+<p><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" alt="Group Image Gallery"></p>
+<p>漫威</p>
+<p>关于漫威的图片</p>
+<p><a target="_blank" rel="noopener" href="https://tzy1997.com/Gallery/marvel"></a></p>
+<p><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" alt="Group Image Gallery"></p>
+<p>OH MY GIRL</p>
+<p>关于 OH MY GIRL 的图片</p>
+<p><a target="_blank" rel="noopener" href="https://tzy1997.com/Gallery/ohmygirl"></a></p>
+<h3 id="子页面"><a href="#子页面" class="headerlink" title="子页面"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%AD%90%E9%A1%B5%E9%9D%A2" title="子页面"></a>子页面</h3><p>子页面也是普通的页面，你只需要<code>hexo new page xxxxx</code>创建你的页面就行。</p>
+<p>然后使用标签外挂 <a target="_blank" rel="noopener" href="https://butterfly.js.org/posts/4aa8abbe/#Gallery%E7%9B%B8%E5%86%8A">gallery</a>，具体用法请查看对应的内容。</p>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">&#123;% gallery %&#125;![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;Fze9jchtnyJXMHN.jpg)![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;ryLVePaqkYm4TEK.jpg)![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;gEy5Zc1Ai6VuO4N.jpg)![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;d6QHbytlSYO4FBG.jpg)![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;6nepIJ1xTgufatZ.jpg)![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;E7Jvr4eIPwUNmzq.jpg)![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;mh19anwBSWIkGlH.jpg)![](https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;2tu9JC8ewpBFagv.jpg)&#123;% endgallery %&#125;</code></pre></div></figure>
+
+<p>如果你想要使用 <code>/photo/ohmygirl</code> 这样的链接显示你的图片内容</p>
+<p>你可以把创建好的 <code>ohmygirl</code>整个文件夹移到 <code>photo</code>文件夹里去</p>
+<h2 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#404%E9%A1%B5%E9%9D%A2" title="404页面"></a>404 页面</h2><p>主題內置了一个简单的 404 页面，可在设置中开放。</p>
+<blockquote>
+<p>如需本地预览，请访问 <a target="_blank" rel="noopener" href="http://localhost:4000/404.html">http://localhost:4000/404.html</a></p>
+</blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">error_404:  enable: true  subtitle: &quot;页面沒有找到&quot;  background:</code></pre></div></figure>
+
+<p>版权声明: 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a target="_blank" rel="noopener" href="https://tzy1997.com/">唐志远の博客</a>！</p>
+<p>打赏</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/17/6283c3f127558.jpg"><img src="https://bu.dusays.com/2022/05/17/6283c3f127558.jpg" alt="wechat"></a></p>
+<p>wechat</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/17/6283c3ee6d872.jpg"><img src="https://bu.dusays.com/2022/05/17/6283c3ee6d872.jpg" alt="alipay"></a></p>
+<p>alipay</p>
+</li>
+</ul>
+<hr>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">基于 Hexo 从零开始搭建个人博客</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">小满</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2022-11-11 22:49:20</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2022/11/11/基于 Hexo 从零开始搭建个人博客/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../../../../tags/%E8%BD%AC%E8%BD%BD/">#转载</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="../../../../tags/hexo/">#hexo</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../%E5%A6%82%E4%BD%95%E8%AE%A9SQL%E6%8F%90%E9%AB%98%E4%B8%80%E4%B8%AA%E5%8F%B0%E9%98%B6%EF%BC%9F/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">如何让SQL提高一个台阶？</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../python%E4%B8%ADsys%EF%BC%8Cos%EF%BC%8Ctime%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Python 系统模块常用方法</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="gitalk-comment-container">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+        <script data-pjax>
+          function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+              __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+              Gitalk && new Gitalk({
+                clientID: 'ab165842dc9a64de37e9# GitHub Application Client ID',
+                clientSecret: '96d2589a9e0310efa2bf996a5f5e88ef8b7b3557#',
+                repo: 'hexo-site-coments',
+                owner: 'jaling9',
+                admin: 'jaling9',
+                id: __gitalk__pathname,
+                proxy: '',
+                language: 'en'
+              }).render('gitalk-container');
+            } catch (e) {
+              window.Gitalk = null;
+            }
+          }
+
+          if ('true' === 'true') {
+            const loadGitalkTimeout = setTimeout(() => {
+              loadGitalk();
+              clearTimeout(loadGitalkTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Front-matter"><span class="nav-text">Front-matter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Page-Front-matter"><span class="nav-text">Page Front-matter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-Front-matter"><span class="nav-text">Post Front-matter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="nav-text">标签页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E9%A1%B5"><span class="nav-text">分类页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5"><span class="nav-text">友情链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2"><span class="nav-text">创建友情链接页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E4%BF%A1%E6%81%AF"><span class="nav-text">友情链接页面添加友链信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BA%93"><span class="nav-text">图库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E9%A1%B5%E9%9D%A2"><span class="nav-text">子页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#404-%E9%A1%B5%E9%9D%A2"><span class="nav-text">404 页面</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">小满</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

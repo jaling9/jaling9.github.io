@@ -1,34 +1,422 @@
-<!DOCTYPE html><html lang="en"><head><!-- hexo injector head_begin start -->
-<script src="config.2c05ca8d6a9c9bdc87b4.js"></script>
-<!-- hexo injector head_begin end -->
-<meta charset="utf-8">
-<title>Tag : hexo - MARSH</title>
-<base href="/">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="http://example.com/tags/hexo/">
-<link rel="icon" type="image/x-icon" href="https://picd.zhimg.com/v2-beddccf1dff18a0b835b6e019d945af7_xll.jpg?source=32738c0c">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Marsh的博客">
+    <meta name="author" content="小满">
+    
+    <title>
+        
+            Tag: hexo |
+        
+        小满的博客
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
 
-<meta name="description" content="Marsh的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MARSH">
-<meta property="og:url" content="http://example.com/tags/hexo/index.html">
-<meta property="og:site_name" content="MARSH">
-<meta property="og:description" content="Marsh的博客">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://picd.zhimg.com/v2-beddccf1dff18a0b835b6e019d945af7_xll.jpg?source=32738c0c">
-<meta property="article:author" content="Marsh">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://picd.zhimg.com/v2-beddccf1dff18a0b835b6e019d945af7_xll.jpg?source=32738c0c">
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"Marsh","description":"Python/go/data analysis/life/game/movie/electronic music","image":"https://picd.zhimg.com/v2-beddccf1dff18a0b835b6e019d945af7_xll.jpg?source=32738c0c"},"url":"http://example.com","image":"https://picd.zhimg.com/v2-beddccf1dff18a0b835b6e019d945af7_xll.jpg?source=32738c0c","description":"Marsh的博客","author":{"@type":"Person","name":"Marsh","description":"Python/go/data analysis/life/game/movie/electronic music","image":"https://picd.zhimg.com/v2-beddccf1dff18a0b835b6e019d945af7_xll.jpg?source=32738c0c"},"inLanguage":{"@type":"Language","alternateName":"en"}}]</script>
-<script async="" src="//www.googletagmanager.com/gtag/js?id=UA-00000000-0"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','UA-00000000-0');</script>
-<!-- hexo injector head_end start --><style is="theme">html{--inside-accent-color:#2a2b33;--inside-foreground-color:#363636;--inside-border-color:#e0e0e0;--inside-background:#f3f6f7;--inside-sidebar-background:#2a2b33;--inside-card-background:#fff;--inside-font-base:'Josefin Sans','PingFang SC',Microsoft YaHei;--inside-font-logo:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;--inside-font-menu:Baloo Bhaijaan,'Josefin Sans','PingFang SC',Microsoft YaHei;--inside-font-heading:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;--inside-font-label:Montserrat,'Josefin Sans','PingFang SC',Microsoft YaHei;--inside-font-code:Inconsolata,monospace;--inside-font-print:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;--inside-content-width:640px;--inside-highlight-00:#ffffff;--inside-highlight-01:#e0e0e0;--inside-highlight-02:#d6d6d6;--inside-highlight-03:#8e908c;--inside-highlight-04:#969896;--inside-highlight-05:#4d4d4c;--inside-highlight-06:#282a2e;--inside-highlight-07:#1d1f21;--inside-highlight-08:#c82829;--inside-highlight-09:#f5871f;--inside-highlight-0a:#eab700;--inside-highlight-0b:#718c00;--inside-highlight-0c:#3e999f;--inside-highlight-0d:#4271ae;--inside-highlight-0e:#8959a8;--inside-highlight-0f:#a3685a;--inside-card-color:#fff;--inside-accent-color-005:rgba(42,43,51,.05);--inside-accent-color-01:rgba(42,43,51,.1);--inside-accent-color-02:rgba(42,43,51,.2);--inside-accent-color-04:rgba(42,43,51,.4);--inside-accent-color-08:rgba(42,43,51,.8)}</style><script src="theme.9ecc9ab1.js"></script>
-<script src="disqus.645052c6.js"></script>
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<script src="cipher.0329a0a9.js"></script>
+    <link rel="shortcut icon" href="../../images/logo.jepg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#c0392b","logo":"/images/logo.jepg","favicon":"/images/logo.jepg","avatar":"/images/avatar.jepg","font_size":"18px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"gitalk","valine":{"appId":"JThobepyUWZ8wrCKpWzo5Vju-gzGzoHsz","appKey":"5l7p5rk6oXtEIST5bExEAMrT","server_urls":null,"placeholder":"留下点足迹~# Input box placeholder"},"gitalk":{"github_id":"jaling9","github_admins":"jaling9","repository":"hexo-site-coments","client_id":"ab165842dc9a64de37e9# GitHub Application Client ID","client_secret":"96d2589a9e0310efa2bf996a5f5e88ef8b7b3557#","proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["摸不到门","半只脚入门","入门"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
-<script src="palette.ead17218.js"></script>
-<link href="styles.91e7dfca63c7c151daa6.css" rel="stylesheet"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><meta name="theme-color" content=""><script type="application/json" is="state">{&q;api/dGFncy9IZXhv.json&q;:{&q;per_page&q;:10,&q;total&q;:1,&q;current&q;:1,&q;data&q;:[{&q;title&q;:&q;Hexo 自定义字体方法&q;,&q;date&q;:&q;2022-11-18T17:01:46.817Z&q;,&q;link&q;:&q;&q;}],&q;name&q;:&q;Hexo&q;}}</script><script type="application/json" is="state">{&q;api/dGFncy9oZXhv.json&q;:{&q;per_page&q;:10,&q;total&q;:1,&q;current&q;:1,&q;data&q;:[{&q;title&q;:&q;hexo d博客部署报错&q;,&q;date&q;:&q;2022-11-14T12:01:21.410Z&q;,&q;link&q;:&q;&q;},{&q;title&q;:&q;基于 Hexo 从零开始搭建个人博客&q;,&q;date&q;:&q;2022-11-11T14:49:20.593Z&q;,&q;link&q;:&q;&q;}],&q;name&q;:&q;hexo&q;}}</script><script type="application/json" is="state">{}</script><script type="application/json" is="state">{&q;api/dGFncy9oZXhv.json&q;:{&q;per_page&q;:10,&q;total&q;:1,&q;current&q;:1,&q;data&q;:[{&q;title&q;:&q;hexo d博客部署报错&q;,&q;date&q;:&q;2022-11-14T12:01:21.410Z&q;,&q;link&q;:&q;&q;},{&q;title&q;:&q;基于 Hexo 从零开始搭建个人博客&q;,&q;date&q;:&q;2022-11-11T14:49:20.593Z&q;,&q;link&q;:&q;&q;}],&q;name&q;:&q;hexo&q;}}</script></head>
-<body lang="en"><!-- hexo injector body_begin start --><is-a class="φh" ng-version="12.1.0"><is-k class="φcu"><div class="φdg"><section class="φdh"><header class="φcv"><i class="φda"></i><!----><!----><img width="160" draggable="false" class="φcx φcw" src="https://picd.zhimg.com/v2-beddccf1dff18a0b835b6e019d945af7_xll.jpg?source=32738c0c" alt="Marsh" title="Marsh"><!----><a href="" class="φcz">Marsh</a><p class="φcy">Python/go/data analysis/life/game/movie/electronic music</p></header><div class="φdl"><a routerlink="/archives" class="φdm" href="/archives"><span>1</span><span>Archives</span></a><a class="φdm" href="/categories/%E5%85%B6%E4%BB%96"><span>5</span><span>Categories</span></a><!----><a routerlink="/tags" class="φdm" href="/tags"><span>11</span><span>Tags</span></a><!----></div><!----><nav class="φdi"><a class="φdj" href="/">Home</a><!----><!----><!----><a class="φdj" href="/about">About</a><!----><!----><!----><a class="φdj" href="/links">Links</a><!----><!----><!----><!----><a target="_blank" rel="external nofollow noopener" class="φdj" href="https://github.com/jaling9">Github</a><!----><!----><!----></nav><!----><div issnippet="" class="φb"><is-palette col="5" theme="#673ab7,#3f51b5,#2196f3,#009688,#4caf50,#ff9800,#ff5722,#795548,#607D8B,#2a2b33"></is-palette></div><!----><!----><!----></section><footer class="φdb φdc"><div class="φde"><!----><a target="_blank" rel="external nofollow noopener" class="φdf" title="Email" href="mailto:"><i class="iκ-email"></i></a><!----><!----><!----></div><!----><p class="φe">© 2023 • <a href="http://example.com">Marsh</a></p><!----><p class="φe"><span class="φdd">Powered by <a href="https://hexo.io" target="_blank" rel="external nofollow noopener">Hexo</a></span><!----><span class="φdd">Theme - <a href="https://github.com/ikeq/hexo-theme-inside" target="_blank" rel="external nofollow noopener">Inside</a></span><!----></p><!----><!----></footer></div></is-k><div class="φj"><div class="φi"><div class="φn"><main class="φm"><router-outlet></router-outlet><is-u class="φgl"><article class="φgp"><h1 class="φgo"># hexo</h1><is-b><a class="φo"><span class="φq"></span><span class="φp"></span></a><a class="φo"><span class="φq"></span><span class="φp"></span></a><!----></is-b></article><!----><!----><!----></is-u><!----></main><!----></div></div></div><is-f class="φz"><div class="φbi"><span class="φa iκ-up"></span><span class="φa iκ-down"></span><!----><!----><span class="φa iκ-search"></span><!----></div><div class="φbb φbc"><svg class="φbh"><defs><filter id="dp"><feGaussianBlur in="SourceGraphic" stdDeviation="2"></feGaussianBlur></filter></defs><circle filter="url(#dp)" fill="rgba(0,0,0,.3)" cx="50%" cy="52%" r="44%"></circle><circle cx="50%" cy="50%" r="44%" class="φbd"></circle><circle cx="50%" cy="50%" r="48%" class="φbg" stroke-dasharray="0% 314.15926%"></circle><!----><g class="φbe"><circle r=".2rem" cx="0" cy="-.8rem"></circle><circle r=".2rem"></circle><circle r=".2rem" cx="0" cy=".8rem"></circle></g><!----></svg></div></is-f><!----><!----></is-a><!-- hexo injector body_begin end --><!-- hexo injector body_end start --><script src="runtime.1ed960b0635ea0669f87.js"></script><script src="polyfills.b7bf56fc45f931a8b83e.js"></script><script src="main.543c891b4aad158701f3.js"></script><!-- hexo injector body_end end -->
 
-</body></html>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="../../images/logo.jepg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               小满的博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class="active"
+                               href="../../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active"
+                       href="../../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="tag-container">
+        <div class="tag-name"><i class="fas fa-tag"></i>&nbsp;hexo
+        </div>
+        <div class="tag-post-list">
+            
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header">
+                <span class="archive-year">2022</span>
+                <span class="archive-year-post-count">[2]</span>
+            </div>
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="../../2022/11/14/hexo%E6%8A%A5%E9%94%99/"
+                        >hexo d博客部署报错</a>
+                        <span class="article-date">11-14</span>
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="../../2022/11/11/%E5%9F%BA%E4%BA%8E%20Hexo%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
+                        >基于 Hexo 从零开始搭建个人博客</a>
+                        <span class="article-date">11-11</span>
+                    </li>
+                
+            </ul>
+        </section>
+    
+</div>
+
+        </div>
+    </div>
+
+    <div class="tag-paginator">
+        <div class="paginator">
+    
+
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">小满</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

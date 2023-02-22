@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Marsh的博客">
+    <meta name="author" content="小满">
+    
+    <title>
+        
+            HTTP/2 协议入门-阮一峰 |
+        
+        小满的博客
+    </title>
+    
+<link rel="stylesheet" href="../css/style.css">
+
+    <link rel="shortcut icon" href="../../../../images/logo.jepg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#c0392b","logo":"/images/logo.jepg","favicon":"/images/logo.jepg","avatar":"/images/avatar.jepg","font_size":"18px","font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"gitalk","valine":{"appId":"JThobepyUWZ8wrCKpWzo5Vju-gzGzoHsz","appKey":"5l7p5rk6oXtEIST5bExEAMrT","server_urls":null,"placeholder":"留下点足迹~# Input box placeholder"},"gitalk":{"github_id":"jaling9","github_admins":"jaling9","repository":"hexo-site-coments","client_id":"ab165842dc9a64de37e9# GitHub Application Client ID","client_secret":"96d2589a9e0310efa2bf996a5f5e88ef8b7b3557#","proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["摸不到门","半只脚入门","入门"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="../../../../images/logo.jepg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               小满的博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../index.html"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="../../../../about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../index.html">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="../../../../about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">HTTP/2 协议入门-阮一峰</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="../../../../images/avatar.jepg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">小满</span>
+                            
+                                <span class="author-label">Lv3</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-11-21 23:09:36</span>
+        <span class="mobile">2022-11-21 23:09</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-11-23 00:25:19</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../../../../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="../../../../tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="../../../../tags/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE/">互联网协议</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <blockquote>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html">https://www.ruanyifeng.com/blog/2016/08/migrate-from-http-to-https.html</a></p>
+</blockquote>
+<p>上一篇文章我介绍了 <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/08/http.html">HTTP&#x2F;2 协议</a> ，它只有在 HTTPS 环境才会生效。</p>
+<p>为了升级到 HTTP&#x2F;2 协议，必须先启用 HTTPS。如果你不了解 HTTPS 协议（学名 TLS 协议），可以参考我以前的文章。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">《HTTPS 协议概述》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">《图解 HTTPS 协议》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2011/02/seven_myths_about_https.html">《HTTPS 协议的七个误解》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/09/ssl-latency.html">《HTTPS 协议的延迟有多大？》</a></li>
+</ul>
+</blockquote>
+<p>本文介绍如何将一个 HTTP 网站升级到 HTTPS 。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2016/bg2016082601.png"></p>
+<h2 id="一、获取证书"><a href="#一、获取证书" class="headerlink" title="一、获取证书"></a>一、获取证书</h2><p>升级到 HTTPS 协议的第一步，就是要获得一张证书。</p>
+<p>证书是一个二进制文件，里面包含经过认证的网站公钥和一些元数据，要从经销商购买。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.gogetssl.com/">GoGetSSL</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ssls.com/">SSLs.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://sslmate.com/">SSLmate.com</a></li>
+</ul>
+</blockquote>
+<p>证书有很多类型，首先分为三种认证级别。</p>
+<p><img src="https://www.ruanyifeng.com/blogimg/asset/2016/bg2016082602.png"></p>
+<blockquote>
+<ul>
+<li><strong>域名认证</strong>（Domain Validation）：最低级别认证，可以确认申请人拥有这个域名。对于这种证书，浏览器会在地址栏显示一把锁。</li>
+<li><strong>公司认证</strong>（Company Validation）：确认域名所有人是哪一家公司，证书里面会包含公司信息。</li>
+<li><strong>扩展认证</strong>（Extended Validation）：最高级别的认证，浏览器地址栏会显示公司名。</li>
+</ul>
+</blockquote>
+<p>还分为三种覆盖范围。</p>
+<blockquote>
+<ul>
+<li><strong>单域名证书</strong>：只能用于单一域名，<code>foo.com</code>的证书不能用于<code>www.foo.com</code></li>
+<li><strong>通配符证书</strong>：可以用于某个域名及其所有一级子域名，比如<code>*.foo.com</code>的证书可以用于<code>foo.com</code>，也可以用于<code>www.foo.com</code></li>
+<li><strong>多域名证书</strong>：可以用于多个域名，比如<code>foo.com</code>和<code>bar.com</code></li>
+</ul>
+</blockquote>
+<p>认证级别越高、覆盖范围越广的证书，价格越贵。</p>
+<p>还有一个免费证书的选择。为了推广HTTPS协议，电子前哨基金会EFF成立了 <a target="_blank" rel="noopener" href="https://letsencrypt.org/">Let’s Encrypt</a>，提供免费证书（<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tags/let-s-encrypt?type=tutorials">教程</a>和<a target="_blank" rel="noopener" href="https://certbot.eff.org/">工具</a>）。</p>
+<p>拿到证书以后，可以用 <a target="_blank" rel="noopener" href="https://tools.keycdn.com/ssl">SSL Certificate Check</a> 检查一下，信息是否正确。</p>
+<h2 id="二、安装证书"><a href="#二、安装证书" class="headerlink" title="二、安装证书"></a>二、安装证书</h2><p>证书可以放在<code>/etc/ssl</code>目录（Linux 系统），然后根据你使用的Web服务器进行配置。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">证书配置文件生成器</a>，by Mozilla</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SSLMate/tlsconfigguide/tree/master/templates">配置文件模板</a>，by SSLMate</li>
+</ul>
+</blockquote>
+<p>如果使用 Let’s Encrypt 证书，请使用自动安装工具 <a target="_blank" rel="noopener" href="https://certbot.eff.org/">Certbot</a>。</p>
+<p>安装成功后，使用 <a target="_blank" rel="noopener" href="https://www.ssllabs.com/ssltest/analyze.html">SSL Labs Server Test</a> 检查一下证书是否生效。</p>
+<h2 id="三、修改链接"><a href="#三、修改链接" class="headerlink" title="三、修改链接"></a>三、修改链接</h2><p>下一步，网页加载的 HTTP 资源，要全部改成 HTTPS 链接。因为加密网页内如果有非加密的资源，浏览器是不会加载那些资源的。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+&lt;script src&#x3D;&quot;http:&#x2F;&#x2F;foo.com&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div></figure>
+</blockquote>
+<p>上面这行加载命令，有两种改法。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+&lt;!-- 改法一 --&gt;
+&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;foo.com&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;
+
+&lt;!-- 改法二 --&gt;
+&lt;script src&#x3D;&quot;&#x2F;&#x2F;foo.com&#x2F;jquery.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre></div></figure>
+</blockquote>
+<p>其中，改法二会根据当前网页的协议，加载相同协议的外部资源，更灵活一些。</p>
+<p>另外，如果页面头部用到了<code>rel=&quot;canonical&quot;</code>，也要改成HTTPS网址。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+&lt;link rel&#x3D;&quot;canonical&quot; href&#x3D;&quot;https:&#x2F;&#x2F;foo.com&#x2F;bar.html&quot; &#x2F;&gt;</code></pre></div></figure>
+</blockquote>
+<h2 id="四、301重定向"><a href="#四、301重定向" class="headerlink" title="四、301重定向"></a>四、301重定向</h2><p>下一步，修改 Web 服务器的配置文件，使用 301 重定向，将 HTTP 协议的访问导向 HTTPS 协议。</p>
+<p><a target="_blank" rel="noopener" href="https://serverfault.com/questions/67316/in-nginx-how-can-i-rewrite-all-http-requests-to-https-while-maintaining-sub-dom">Nginx 的写法</a>。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+server &#123;
+  listen 80;
+  server_name domain.com www.domain.com;
+  return 301 https:&#x2F;&#x2F;domain.com$request_uri;
+&#125;</code></pre></div></figure>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://httpd.apache.org/docs/2.4/rewrite/remapping.html#canonicalhost">Apache 的写法</a>（<code>.htaccess</code>文件）。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+RewriteEngine On
+RewriteCond %&#123;HTTPS&#125; off
+RewriteRule (.*) https:&#x2F;&#x2F;%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [R&#x3D;301,L]</code></pre></div></figure>
+</blockquote>
+<h2 id="五、安全措施"><a href="#五、安全措施" class="headerlink" title="五、安全措施"></a>五、安全措施</h2><p>以下措施可以进一步保证通信安全。</p>
+<h3 id="5-1-HTTP-Strict-Transport-Security-HSTS"><a href="#5-1-HTTP-Strict-Transport-Security-HSTS" class="headerlink" title="5.1 HTTP Strict Transport Security (HSTS)"></a>5.1 HTTP Strict Transport Security (HSTS)</h3><p>访问网站时，用户很少直接在地址栏输入<code>https://</code>，总是通过点击链接，或者3xx重定向，从<code>HTTP</code>页面进入<code>HTTPS</code>页面。攻击者完全可以在用户发出<code>HTTP</code>请求时，劫持并篡改该请求。</p>
+<p>另一种情况是恶意网站使用自签名证书，冒充另一个网站，这时浏览器会给出警告，但是许多用户会忽略警告继续访问。</p>
+<p>“HTTP严格传输安全”（简称 HSTS）的作用，就是强制浏览器只能发出<code>HTTPS</code>请求，并阻止用户接受不安全的证书。</p>
+<p>它在网站的响应头里面，加入一个强制性声明。以下例子摘自<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTTP%E4%B8%A5%E6%A0%BC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8">维基百科</a>。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+Strict-Transport-Security: max-age&#x3D;31536000; includeSubDomains</code></pre></div></figure>
+</blockquote>
+<p>上面这段头信息有两个作用。</p>
+<blockquote>
+<p>（1）在接下来的一年（即31536000秒）中，浏览器只要向<code>example.com</code>或其子域名发送HTTP请求时，必须采用HTTPS来发起连接。用户点击超链接或在地址栏输入<code>http://www.example.com/</code>，浏览器应当自动将<code>http</code>转写成<code>https</code>，然后直接向<code>https://www.example.com/</code>发送请求。</p>
+<p>（2）在接下来的一年中，如果<code>example.com</code>服务器发送的证书无效，用户不能忽略浏览器警告，将无法继续访问该网站。</p>
+</blockquote>
+<p>HSTS 很大程度上解决了 SSL 剥离攻击。只要浏览器曾经与服务器建立过一次安全连接，之后浏览器会强制使用<code>HTTPS</code>，即使链接被换成了<code>HTTP</code>。</p>
+<p>该方法的主要不足是，用户首次访问网站发出HTTP请求时，是不受HSTS保护的。</p>
+<p>如果想要全面分析网站的安全程度，可以使用 Mozilla 的 <a target="_blank" rel="noopener" href="https://observatory.mozilla.org/">Observatory</a>。</p>
+<h3 id="5-2-Cookie"><a href="#5-2-Cookie" class="headerlink" title="5.2 Cookie"></a>5.2 Cookie</h3><p>另一个需要注意的地方是，确保浏览器只在使用 HTTPS 时，才发送Cookie。</p>
+<p>网站响应头里面，<code>Set-Cookie</code>字段加上<code>Secure</code>标志即可。</p>
+<blockquote>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">
+Set-Cookie: LSID&#x3D;DQAAAK...Eaem_vYg; Secure</code></pre></div></figure>
+</blockquote>
+<h2 id="六、参考链接"><a href="#六、参考链接" class="headerlink" title="六、参考链接"></a>六、参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1oRXJUIttqQxuxmjj2tgYjj096IKw4Zcw6eAoIKWZ2oQ/edit#">How To Migrate To HTTPS</a>, by Chris Palmer</li>
+<li><a target="_blank" rel="noopener" href="https://www.keycdn.com/blog/http-to-https/">Complete Guide - How to Migrate from HTTP to HTTPS</a>, by KeyCDN</li>
+<li><a target="_blank" rel="noopener" href="http://smallbiztrends.com/2015/04/changing-from-http-to-https.html">What You Need to Know About Changing From Http to Https</a>, by Matt Mansfield</li>
+</ul>
+<p>（完）</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">Post title</span>: <span class="content">HTTP/2 协议入门-阮一峰</span>
+        </li>
+        <li class="post-author">
+            <span class="type">Post author</span>: <span class="content">小满</span>
+        </li>
+        <li class="post-time">
+            <span class="type">Create time</span>: <span class="content">2022-11-21 23:09:36</span>
+        </li>
+        <li class="post-link">
+            <span class="type">Post link</span>: <span class="content">2022/11/21/HTTPS 升级指南-阮一峰/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">Copyright notice</span>: <span class="content">All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="Copy copyright info" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="../../../../tags/%E8%BD%AC%E8%BD%BD/">#转载</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="../../../../tags/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E8%AE%AE/">#互联网协议</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="../MVC%EF%BC%8CMVP%20%E5%92%8C%20MVVM%20%E7%9A%84%E5%9B%BE%E7%A4%BA-%E9%98%AE%E4%B8%80%E5%B3%B0/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">MVC，MVP 和 MVVM 的图示-阮一峰</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="../HTTP%20%E5%8D%8F%E8%AE%AE%E5%85%A5%E9%97%A8-%E9%98%AE%E4%B8%80%E5%B3%B0/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">HTTP 协议入门-阮一峰</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="gitalk-comment-container">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+        <script data-pjax>
+          function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+              __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+              Gitalk && new Gitalk({
+                clientID: 'ab165842dc9a64de37e9# GitHub Application Client ID',
+                clientSecret: '96d2589a9e0310efa2bf996a5f5e88ef8b7b3557#',
+                repo: 'hexo-site-coments',
+                owner: 'jaling9',
+                admin: 'jaling9',
+                id: __gitalk__pathname,
+                proxy: '',
+                language: 'en'
+              }).render('gitalk-container');
+            } catch (e) {
+              window.Gitalk = null;
+            }
+          }
+
+          if ('true' === 'true') {
+            const loadGitalkTimeout = setTimeout(() => {
+              loadGitalk();
+              clearTimeout(loadGitalkTimeout);
+            }, 1000);
+          } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%8E%B7%E5%8F%96%E8%AF%81%E4%B9%A6"><span class="nav-text">一、获取证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6"><span class="nav-text">二、安装证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BF%AE%E6%94%B9%E9%93%BE%E6%8E%A5"><span class="nav-text">三、修改链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81301%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-text">四、301重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E6%8E%AA%E6%96%BD"><span class="nav-text">五、安全措施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-HTTP-Strict-Transport-Security-HSTS"><span class="nav-text">5.1 HTTP Strict Transport Security (HSTS)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Cookie"><span class="nav-text">5.2 Cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">六、参考链接</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">小满</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+            <div class="deploy-info info-item">
+                
+                    This site is provided with deployment services by <span class="tooltip" data-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
