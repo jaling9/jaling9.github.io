@@ -16,22 +16,22 @@
   <meta name="author" content="Marsh">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本教材由知了传课辛苦制作而成，仅供学习使用，请勿用于商业用途！如进行转载请务必注明出处！谢谢！ 项目配置一、设置为DEBUG模式：默认情况下flask不会开启DEBUG模式，开启DEBUG模式后，flask会在每次保存代码的时候自动的重新载入代码，并且如果代码有错误，会在终端进行提示。如果一切正常，会在终端打印以下信息： * Restarting with stat * Debugger is a">
+    <meta name="description" content="本教材由知了传课辛苦制作而成，仅供学习使用，请勿用于商业用途！如进行转载请务必注明出处！谢谢！ 项目配置一、设置为 DEBUG 模式：默认情况下flask不会开启DEBUG模式，开启DEBUG模式后，flask 会在每次保存代码的时候自动的重新载入代码，并且如果代码有错误，会在终端进行提示。如果一切正常，会在终端打印以下信息： * Restarting with stat * Debugger i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask项目配置">
 <meta property="og:url" content="http://example.com/2022/11/11/%E7%AC%AC%E4%BA%8C%E8%8A%82%EF%BC%9A%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%20-%20Python%E6%A1%86%E6%9E%B6Flask%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%20-%20%E7%9F%A5%E4%BA%86%E4%BC%A0%E8%AF%BE/index.html">
 <meta property="og:site_name" content="MARSH">
-<meta property="og:description" content="本教材由知了传课辛苦制作而成，仅供学习使用，请勿用于商业用途！如进行转载请务必注明出处！谢谢！ 项目配置一、设置为DEBUG模式：默认情况下flask不会开启DEBUG模式，开启DEBUG模式后，flask会在每次保存代码的时候自动的重新载入代码，并且如果代码有错误，会在终端进行提示。如果一切正常，会在终端打印以下信息： * Restarting with stat * Debugger is a">
+<meta property="og:description" content="本教材由知了传课辛苦制作而成，仅供学习使用，请勿用于商业用途！如进行转载请务必注明出处！谢谢！ 项目配置一、设置为 DEBUG 模式：默认情况下flask不会开启DEBUG模式，开启DEBUG模式后，flask 会在每次保存代码的时候自动的重新载入代码，并且如果代码有错误，会在终端进行提示。如果一切正常，会在终端打印以下信息： * Restarting with stat * Debugger i">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images.unsplash.com/photo-1526488807855-309186804587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80">
+<meta property="og:image" content="https://images.unsplash.com/photo-1526488807855-309186804587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=8">
 <meta property="article:published_time" content="2022-11-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-21T15:22:22.927Z">
+<meta property="article:modified_time" content="2023-02-22T11:01:51.888Z">
 <meta property="article:author" content="Marsh">
 <meta property="article:tag" content="转载">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Flask">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1526488807855-309186804587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1526488807855-309186804587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=8">
   
   
   
@@ -69,11 +69,15 @@
 
 
 
+  
+<link rel="stylesheet" href="../css/custom.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"img/emoji-hover.jpg"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"img/emoji-hover.jpg"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -439,7 +443,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on November 21, 2022 pm
+                    Last updated on February 22, 2023 pm
                   
                 
               </p>
@@ -448,7 +452,7 @@
               <div class="markdown-body">
                 
                 <p>本教材由知了传课辛苦制作而成，仅供学习使用，请勿用于商业用途！如进行转载请务必注明出处！谢谢！</p>
-<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><h2 id="一、设置为DEBUG模式："><a href="#一、设置为DEBUG模式：" class="headerlink" title="一、设置为DEBUG模式："></a>一、设置为DEBUG模式：</h2><p>默认情况下<code>flask</code>不会开启<code>DEBUG</code>模式，开启<code>DEBUG</code>模式后，flask会在每次保存代码的时候自动的重新载入代码，并且如果代码有错误，会在终端进行提示。<br><img src="https://www.zlkt.net/media/course/2UZz2JSDySff5o8CPeqPRN.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>如果一切正常，会在终端打印以下信息：</p>
+<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><h2 id="一、设置为-DEBUG-模式："><a href="#一、设置为-DEBUG-模式：" class="headerlink" title="一、设置为 DEBUG 模式："></a>一、设置为 DEBUG 模式：</h2><p>默认情况下<code>flask</code>不会开启<code>DEBUG</code>模式，开启<code>DEBUG</code>模式后，flask 会在每次保存代码的时候自动的重新载入代码，并且如果代码有错误，会在终端进行提示。<br><img src="https://www.zlkt.net/media/course/2UZz2JSDySff5o8CPeqPRN.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>如果一切正常，会在终端打印以下信息：</p>
 <figure><div class="code-wrapper"><pre class="language-python" data-language="python"><code class="language-python"><span class="token operator">*</span> Restarting <span class="token keyword">with</span> stat
 <span class="token operator">*</span> Debugger <span class="token keyword">is</span> active!
 <span class="token operator">*</span> Debugger pin code<span class="token punctuation">:</span> <span class="token number">294</span><span class="token operator">-</span><span class="token number">745</span><span class="token operator">-</span><span class="token number">044</span>
@@ -551,7 +555,7 @@ app<span class="token punctuation">.</span>config<span class="token punctuation"
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>November 21, 2022</div>
+          <div>February 22, 2023</div>
         </div>
       
       
@@ -654,8 +658,6 @@ app<span class="token punctuation">.</span>config<span class="token punctuation"
   
 
 
-
-  
 
 
 
@@ -834,8 +836,6 @@ app<span class="token punctuation">.</span>config<span class="token punctuation"
   });
 </script>
 
-
-  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="../../../../js/local-search.js" ></script>
 

@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://images.unsplash.com/photo-1507511262981-cda53220c19e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2373&q=80">
 <meta property="article:published_time" content="2022-11-11T14:49:20.593Z">
-<meta property="article:modified_time" content="2022-11-19T08:54:54.399Z">
+<meta property="article:modified_time" content="2023-02-22T11:01:46.968Z">
 <meta property="article:author" content="Marsh">
 <meta property="article:tag" content="转载">
 <meta property="article:tag" content="hexo">
@@ -68,11 +68,15 @@
 
 
 
+  
+<link rel="stylesheet" href="../css/custom.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"img/emoji-hover.jpg"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":false,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"img/emoji-hover.jpg"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -438,7 +442,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on November 19, 2022 pm
+                    Last updated on February 22, 2023 pm
                   
                 
               </p>
@@ -460,7 +464,7 @@
 <li>Page Front-matter 用于页面配置</li>
 <li>Post Front-matter 用于文章页配置</li>
 </ul>
-<p>如果标注可选的参数，可根据自己需要添加，不用全部都写在markdown里</p>
+<p>如果标注可选的参数，可根据自己需要添加，不用全部都写在 markdown 里</p>
 <h3 id="Page-Front-matter"><a href="#Page-Front-matter" class="headerlink" title="Page Front-matter"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#Page-Front-matter" title="Page Front-matter"></a>Page Front-matter</h3><figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title:date:updated:type:comments:description:keywords:top_img:mathjax:katex:aside:aplayer:highlight_shrink:---</code></pre></div></figure>
 
 <table>
@@ -504,11 +508,11 @@
 </tr>
 <tr>
 <td>mathjax</td>
-<td>【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)</td>
+<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
 </tr>
 <tr>
 <td>katex</td>
-<td>【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)</td>
+<td>【可选】显示 katex(当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
 </tr>
 <tr>
 <td>aside</td>
@@ -516,11 +520,11 @@
 </tr>
 <tr>
 <td>aplayer</td>
-<td>【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的音乐 配置</td>
 </tr>
 <tr>
 <td>highlight_shrink</td>
-<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中highlight_shrink的配置)</td>
+<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
 </tr>
 </tbody></table>
 <h3 id="Post-Front-matter"><a href="#Post-Front-matter" class="headerlink" title="Post Front-matter"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#Post-Front-matter" title="Post Front-matter"></a>Post Front-matter</h3><figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title:date:updated:tags:categories:keywords:description:top_img:comments:cover:toc:toc_number:toc_style_simple:copyright:copyright_author:copyright_author_href:copyright_url:copyright_info:mathjax:katex:aplayer:highlight_shrink:aside:---</code></pre></div></figure>
@@ -566,7 +570,7 @@
 </tr>
 <tr>
 <td>cover</td>
-<td>【可选】文章缩略图(如果没有设置top_img,文章页顶部将显示缩略图，可设为false&#x2F;图片地址&#x2F;留空)</td>
+<td>【可选】文章缩略图(如果没有设置 top_img,文章页顶部将显示缩略图，可设为 false&#x2F;图片地址&#x2F;留空)</td>
 </tr>
 <tr>
 <td>comments</td>
@@ -574,11 +578,11 @@
 </tr>
 <tr>
 <td>toc</td>
-<td>【可选】显示文章TOC(默认为设置中toc的enable配置)</td>
+<td>【可选】显示文章 TOC(默认为设置中 toc 的 enable 配置)</td>
 </tr>
 <tr>
 <td>toc_number</td>
-<td>【可选】显示toc_number(默认为设置中toc的number配置)</td>
+<td>【可选】显示 toc_number(默认为设置中 toc 的 number 配置)</td>
 </tr>
 <tr>
 <td>toc_style_simple</td>
@@ -586,7 +590,7 @@
 </tr>
 <tr>
 <td>copyright</td>
-<td>【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)</td>
+<td>【可选】显示文章版权模块(默认为设置中 post_copyright 的 enable 配置)</td>
 </tr>
 <tr>
 <td>copyright_author</td>
@@ -606,19 +610,19 @@
 </tr>
 <tr>
 <td>mathjax</td>
-<td>【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)</td>
+<td>【可选】显示 mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false)</td>
 </tr>
 <tr>
 <td>katex</td>
-<td>【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)</td>
+<td>【可选】显示 katex(当设置 katex 的 per_page: false 时，才需要配置，默认 false)</td>
 </tr>
 <tr>
 <td>aplayer</td>
-<td>【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置</td>
+<td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的音乐 配置</td>
 </tr>
 <tr>
 <td>highlight_shrink</td>
-<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中highlight_shrink的配置)</td>
+<td>【可选】配置代码框是否展开(true&#x2F;false)(默认为设置中 highlight_shrink 的配置)</td>
 </tr>
 <tr>
 <td>aside</td>
@@ -629,7 +633,7 @@
 <p>注意：我的博客根目录路径为 【G:&#x2F;hexo-blog&#x2F;blog-demo】，下文所说的根目录都是此路径，将用<code>[BlogRoot]</code>代替。如果不清楚根目录路径，请回到教程 <a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1602/">基于 Hexo 从零开始搭建个人博客（二）</a>，查看你执行<code>hexo init xxx</code>这条命令时所选择的路径，例如我选择的路径是【G:&#x2F;hexo-blog】，我的博客根目录即为【G:&#x2F;hexo-blog&#x2F;xxx】。</p>
 </blockquote>
 <h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E6%A0%87%E7%AD%BE%E9%A1%B5" title="标签页"></a>标签页</h2><ol>
-<li><p>前往你的Hexo博客根目录，打开cmd命令窗口执行<code>hexo new page tags</code>。</p>
+<li><p>前往你的 Hexo 博客根目录，打开 cmd 命令窗口执行<code>hexo new page tags</code>。</p>
 </li>
 <li><p>在【BlogRoot&#x2F;source&#x2F;】会生成一个含有<code>index.md</code>文件的<code>tags</code>文件夹。</p>
 <p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/62937c8344bbb.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" srcset="/img/loading.gif" lazyload></a></p>
@@ -638,7 +642,7 @@
 <figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title: tagsdate: 2022-05-29 21:42:56type: &quot;tags&quot;---</code></pre></div></figure></li>
 </ol>
 <h2 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%88%86%E7%B1%BB%E9%A1%B5" title="分类页"></a>分类页</h2><ol>
-<li><p>前往你的Hexo博客根目录，打开cmd命令窗口执行<code>hexo new page categories</code>。</p>
+<li><p>前往你的 Hexo 博客根目录，打开 cmd 命令窗口执行<code>hexo new page categories</code>。</p>
 </li>
 <li><p>在【BlogRoot&#x2F;source&#x2F;】会生成一个含有<code>index.md</code>文件的<code>categories</code>文件夹。</p>
 <p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/62937c8627deb.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" srcset="/img/loading.gif" lazyload></a></p>
@@ -647,7 +651,7 @@
 <figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title: categoriesdate: 2022-05-29 21:57:07type: &quot;categories&quot;---</code></pre></div></figure></li>
 </ol>
 <h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5" title="友情链接"></a>友情链接</h2><h3 id="创建友情链接页面"><a href="#创建友情链接页面" class="headerlink" title="创建友情链接页面"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%88%9B%E5%BB%BA%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2" title="创建友情链接页面"></a>创建友情链接页面</h3><ol>
-<li><p>前往你的Hexo博客根目录，打开cmd命令窗口执行<code>hexo new page link</code>。</p>
+<li><p>前往你的 Hexo 博客根目录，打开 cmd 命令窗口执行<code>hexo new page link</code>。</p>
 </li>
 <li><p>在【BlogRoot&#x2F;source&#x2F;】会生成一个含有<code>index.md</code>文件的<code>link</code>文件夹。</p>
 <p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/629385dc3918c.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" srcset="/img/loading.gif" lazyload></a></p>
@@ -655,12 +659,12 @@
 <li><p>修改【BlogRoot&#x2F;source&#x2F;link&#x2F;index.md】，添加<code>type: &quot;link&quot;</code>。</p>
 <figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">---title: linkdate: 2022-05-29 22:03:35type: &quot;link&quot;---</code></pre></div></figure></li>
 </ol>
-<h3 id="友情链接页面添加友链信息"><a href="#友情链接页面添加友链信息" class="headerlink" title="友情链接页面添加友链信息"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E4%BF%A1%E6%81%AF" title="友情链接页面添加友链信息"></a>友情链接页面添加友链信息</h3><p>前往Hexo博客目录（【BlogRoot&#x2F;source&#x2F;_data】）创建一个文件<code>link.yml</code>（如果沒有 _data 文件夹，请自行创建）。</p>
+<h3 id="友情链接页面添加友链信息"><a href="#友情链接页面添加友链信息" class="headerlink" title="友情链接页面添加友链信息"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E4%BF%A1%E6%81%AF" title="友情链接页面添加友链信息"></a>友情链接页面添加友链信息</h3><p>前往 Hexo 博客目录（【BlogRoot&#x2F;source&#x2F;_data】）创建一个文件<code>link.yml</code>（如果沒有 _data 文件夹，请自行创建）。</p>
 <p><a target="_blank" rel="noopener" href="https://bu.dusays.com/2022/05/29/629385e182b48.jpg"><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" srcset="/img/loading.gif" lazyload></a></p>
 <figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">- class_name: 友情链接  class_desc: 那些人，那些事  link_list:    - name: 唐志远の博客      link: https:&#x2F;&#x2F;tzy1997.com&#x2F;      avatar: https:&#x2F;&#x2F;bu.dusays.com&#x2F;2022&#x2F;01&#x2F;14&#x2F;cd5ffd485f867.jpg      descr: 古今之成大事者，不惟有超世之才，亦必有坚忍不拔之志。- class_name: 网站  class_desc: 值得推荐的网站  link_list:    - name: Twitter      link: https:&#x2F;&#x2F;twitter.com&#x2F;      avatar: https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;05&#x2F;14&#x2F;5VyHPQqR6LWF39a.png      descr: 社交分享平台</code></pre></div></figure>
 
 <p><code>class_name</code>和<code>class_desc</code>支持 html 格式，如不需要，也可以留空。</p>
-<p>如果你想设置成本站友链页的效果，请参考教程：<a target="_blank" rel="noopener" href="https://tzy1997.com/articles/0xiipgum/">基于Butterfly的外挂标签引入</a> 。</p>
+<p>如果你想设置成本站友链页的效果，请参考教程：<a target="_blank" rel="noopener" href="https://tzy1997.com/articles/0xiipgum/">基于 Butterfly 的外挂标签引入</a> 。</p>
 <h2 id="图库"><a href="#图库" class="headerlink" title="图库"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%9B%BE%E5%BA%93" title="图库"></a>图库</h2><p>图库页面只是普通的页面，你只需要<code>hexo new page xxxxx</code>创建你的页面就行。</p>
 <p>然后使用标签外挂 <a target="_blank" rel="noopener" href="https://butterfly.js.org/posts/4aa8abbe/#Gallery%E7%9B%B8%E5%86%8A%E5%9C%96%E5%BA%AB">galleryGroup</a>，具体用法请查看对应的内容。</p>
 <figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">&lt;div class&#x3D;&quot;gallery-group-main&quot;&gt;&#123;% galleryGroup &#39;壁纸&#39; &#39;收藏的一些壁纸&#39; &#39;&#x2F;Gallery&#x2F;wallpaper&#39; https:&#x2F;&#x2F;bu.dusays.com&#x2F;2021&#x2F;03&#x2F;06&#x2F;38a2c5cd8b44e.jpg %&#125;&#123;% galleryGroup &#39;漫威&#39; &#39;关于漫威的图片&#39; &#39;&#x2F;Gallery&#x2F;marvel&#39; https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;8t97aVlp4hgyBGu.jpg %&#125;&#123;% galleryGroup &#39;OH MY GIRL&#39; &#39;关于OH MY GIRL的图片&#39; &#39;&#x2F;Gallery&#x2F;ohmygirl&#39; https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;12&#x2F;25&#x2F;hOqbQ3BIwa6KWpo.jpg %&#125;&lt;&#x2F;div&gt;</code></pre></div></figure>
@@ -675,7 +679,7 @@
 <p><a target="_blank" rel="noopener" href="https://tzy1997.com/Gallery/marvel"></a></p>
 <p><img src="https://bu.dusays.com/2022/01/14/1ff50a00bd75c.gif" srcset="/img/loading.gif" lazyload alt="Group Image Gallery"></p>
 <p>OH MY GIRL</p>
-<p>关于OH MY GIRL的图片</p>
+<p>关于 OH MY GIRL 的图片</p>
 <p><a target="_blank" rel="noopener" href="https://tzy1997.com/Gallery/ohmygirl"></a></p>
 <h3 id="子页面"><a href="#子页面" class="headerlink" title="子页面"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#%E5%AD%90%E9%A1%B5%E9%9D%A2" title="子页面"></a>子页面</h3><p>子页面也是普通的页面，你只需要<code>hexo new page xxxxx</code>创建你的页面就行。</p>
 <p>然后使用标签外挂 <a target="_blank" rel="noopener" href="https://butterfly.js.org/posts/4aa8abbe/#Gallery%E7%9B%B8%E5%86%8A">gallery</a>，具体用法请查看对应的内容。</p>
@@ -683,11 +687,11 @@
 
 <p>如果你想要使用 <code>/photo/ohmygirl</code> 这样的链接显示你的图片内容</p>
 <p>你可以把创建好的 <code>ohmygirl</code>整个文件夹移到 <code>photo</code>文件夹里去</p>
-<h2 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#404%E9%A1%B5%E9%9D%A2" title="404页面"></a>404页面</h2><p>主題內置了一个简单的404页面，可在设置中开放。</p>
+<h2 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a><a target="_blank" rel="noopener" href="https://tzy1997.com/articles/hexo1604/#404%E9%A1%B5%E9%9D%A2" title="404页面"></a>404 页面</h2><p>主題內置了一个简单的 404 页面，可在设置中开放。</p>
 <blockquote>
 <p>如需本地预览，请访问 <a target="_blank" rel="noopener" href="http://localhost:4000/404.html">http://localhost:4000/404.html</a></p>
 </blockquote>
-<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">error_404:  enable: true  subtitle: &quot;页面沒有找到&quot;  background: </code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-none"><code class="language-none">error_404:  enable: true  subtitle: &quot;页面沒有找到&quot;  background:</code></pre></div></figure>
 
 <p>版权声明: 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a target="_blank" rel="noopener" href="https://tzy1997.com/">唐志远の博客</a>！</p>
 <p>打赏</p>
@@ -766,7 +770,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>November 19, 2022</div>
+          <div>February 22, 2023</div>
         </div>
       
       
@@ -875,8 +879,6 @@
   
 
 
-
-  
 
 
 
@@ -1055,8 +1057,6 @@
   });
 </script>
 
-
-  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="../../../../js/local-search.js" ></script>
 
